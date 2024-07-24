@@ -1,0 +1,128 @@
+@import './setting/utils';
+@import './setting/variables';
+
+body {
+    background-color: $color-body;
+}
+
+.postpg_container_all {
+    @include box(80%, 700px);
+    display: grid;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    right: 4%;
+    transform: translateY(-50%);
+
+    .postpg_sec1 {
+        @include box(95%, 50px);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0 auto;
+
+        >span {
+            font-size: 2rem;
+            font-weight: 500;
+        }
+
+        .postpg_btns {
+            @include box(350px, 50px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .postpg_btn {
+                @include box(48%, 40px);
+                border-radius: 15px;
+                border: none;
+                box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.25);
+                font-weight: 700;
+            }
+
+            .cancel_btn {
+                background-color: #EEEEEE;
+            }
+
+            .upload_btn {
+                background-color: $color-btn;
+                color: $color-white;
+            }
+        }
+    }
+
+    .post_write {
+        @include box(93%, 450px);
+        margin: 0 auto;
+
+        .ql-toolbar {
+            border: none;
+            border-bottom: 1px solid $color-toolbar;
+            border-top: 1px solid $color-toolbar;
+            padding: 10px;
+        }
+
+        .ql-container {
+            border: none;
+            height: 410px;
+        }
+
+        .ql-editor {
+            border: none;
+            height: 420px;
+        }
+    }
+
+    .postpg_container {
+        @include box(95%, 580px);
+        background-color: $color-white;
+        margin: 0 auto;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        border-radius: 20px;
+        box-shadow:
+            -3px 0 5px rgba(0, 0, 0, 0.1),
+            2px 0 6px rgba(0, 0, 0, 0.1);
+
+        .postpg_sec1 {
+            .postpg_btns {
+                .postpg_btn {
+                    @include box(95%, 100px);
+                }
+            }
+        }
+
+        .postpg_sec2 {
+            @include box(93%, 100px);
+            padding-bottom: 20px;
+            margin: 0 auto;
+
+            .postpg_subject {
+                @include box(20%, 40px);
+                margin-bottom: 10px;
+                border: 0.3px solid $color-postborder;
+                border-radius: 20px;
+                padding: 10px;
+                box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.15);
+
+                &:focus {
+                    outline: none;
+                }
+            }
+
+            .postpg_title {
+                @include box(98%, 30px);
+                border: 0.3px solid $color-postborder;
+                border-radius: 20px;
+                padding: 10px;
+                background-color: $color-postback;
+                box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.15);
+
+                &:focus {
+                    background-color: $color-white;
+                    outline: none;
+                }
+            }
+        }
+    }
+}

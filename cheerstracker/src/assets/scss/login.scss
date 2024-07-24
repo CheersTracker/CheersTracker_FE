@@ -13,7 +13,7 @@ p {
 
 .login_container {
     @include box(80%, 100%);
-    background-color: #fff;
+    background-color: $color-white;
     border: rgba(102, 102, 102, 0.25) 1px solid;
     border-radius: 20px;
     margin: 0 auto;
@@ -75,7 +75,7 @@ p {
             cursor: pointer;
             font-size: 1.5rem;
             font-weight: 500;
-            color: #fff;
+            color: $color-white;
 
             &:hover {
                 background-color: $color-btn;
@@ -139,9 +139,9 @@ p {
         }
 
         .logo_desc {
-            border: #BBCEFA 0.5px solid;
+            border: $color-logoborder 0.5px solid;
             border-radius: 50%;
-            box-shadow: 0px 4px 70px 20px #BBCEFA;
+            box-shadow: 0px 4px 70px 20px $color-logoborder;
             background-color: rgba(245, 248, 255, 0.7);
             @include box(100%, 200px);
             position: relative;
@@ -179,7 +179,7 @@ p {
             cursor: pointer;
             font-size: 2rem;
             font-weight: 500;
-            color: #fff;
+            color: $color-white;
             margin-top: 30px;
             margin-left: 7%;
     
