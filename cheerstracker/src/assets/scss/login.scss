@@ -1,0 +1,191 @@
+@import './setting/utils';
+@import './setting/variables';
+
+body {
+    background-color: $color-body;
+    padding: 30px;
+}
+
+p {
+    padding: 0;
+    margin: 0;
+}
+
+.login_container {
+    @include box(80%, 100%);
+    background-color: #fff;
+    border: rgba(102, 102, 102, 0.25) 1px solid;
+    border-radius: 20px;
+    margin: 0 auto;
+    padding: 20px;
+
+    .login_sec1 {
+        width: 100%;
+        margin: 0 auto;
+
+        .login_title {
+            font-size: 2rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .login_id_container {
+            margin-bottom: 30px;
+            width: 100%;
+
+            .login_id_label {
+                font-size: 1rem;
+                color: $color-label;
+                margin-bottom: 10px;
+            }
+
+            #id {
+                @include box(98%, 50px);
+                border-radius: 15px;
+                border: rgba(102, 102, 102, 0.35) 1px solid;
+                padding: 5px;
+            }
+        }
+
+        .login_pw_container {
+            margin-bottom: 30px;
+            width: 100%;
+
+            .login_pw_label {
+                font-size: 1rem;
+                color: $color-label;
+                margin-bottom: 10px;
+            }
+
+            #pw {
+                @include box(98%, 50px);
+                border-radius: 15px;
+                border: rgba(102, 102, 102, 0.35) 1px solid;
+                padding: 5px;
+            }
+        }
+
+        .login_button {
+            @include box(100%, 60px);
+            padding: 0;
+            background-color: $color-nonbtn;
+            border: none;
+            border-radius: 35px;
+            cursor: pointer;
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #fff;
+
+            &:hover {
+                background-color: $color-btn;
+            }
+        }
+    }
+
+    .or-container {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        padding: 35px 0;
+        width: 100%;
+        margin: 0 auto;
+
+        >span {
+            color: $color-label;
+            font-size: 1.5rem;
+            font-weight: 500;
+            padding: 0 20px
+        }
+
+        .custom-hr {
+            @include box(40%, 2px);
+            border: none;
+            background-color: rgba(102, 102, 102, 0.25);
+            margin: 20px 0;
+        }
+    }
+
+    .login_social {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        >img {
+            @include box(50px, 50px);
+            cursor: pointer;
+
+            &:first-child {
+                margin-right: 50px;
+            }
+        }
+    }
+}
+
+.loginpg_container {
+    display: flex;
+    @include box(100%, 100%);
+    align-items: center;
+    justify-content: space-around;
+
+    .loginpg_logo_zone {
+        @include box(45%, 100%);
+
+        >img {
+            @include box(80%, 50%);
+            position: relative;
+            left: 10%;
+            z-index: 10;
+        }
+
+        .logo_desc {
+            border: #BBCEFA 0.5px solid;
+            border-radius: 50%;
+            box-shadow: 0px 4px 70px 20px #BBCEFA;
+            background-color: rgba(245, 248, 255, 0.7);
+            @include box(100%, 200px);
+            position: relative;
+            bottom: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .desc_p_container {
+                >p {
+                    text-align: center;
+                    font-size: 1rem;
+    
+                    >span {
+                        font-weight: 600
+                    }
+
+                    .span_cheerstracker {
+                        color: $color-btn
+                    }
+                }
+            }
+        }
+    }
+
+    .loginpg_login_zone {
+        width: 40%;
+
+        .signup_button {
+            @include box(87%, 80px);
+            padding: 0;
+            background-color: $color-nonbtn;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 2rem;
+            font-weight: 500;
+            color: #fff;
+            margin-top: 30px;
+            margin-left: 7%;
+    
+            &:hover {
+                background-color: $color-btn;
+            }
+        }
+    }
+}
