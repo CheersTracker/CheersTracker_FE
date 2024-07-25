@@ -1,0 +1,24 @@
+@import './setting/utils';
+@import './setting/variables';
+
+.search_container {
+    @include box(35%, 30px);
+    margin: 0 auto;
+    position: relative;
+    top: 20px;
+    left: 1%;
+
+    .search_icon {
+        @include box(25px, 25px);
+        position: absolute;
+        top: 8px;
+        left: 2%;
+    }
+
+    .search_input {
+        @include box(100%, 100%);
+        border-radius: 120px;
+        border: rgba(102, 102, 102, 0.35) 1px solid;
+        padding: 5px;
+    }
+}
