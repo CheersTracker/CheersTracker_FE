@@ -4,6 +4,11 @@
 body {
     background-color: $color-body;
     padding: 30px;
+    margin: 0;
+    background-image: url("../images/Logo/CheersTracker_logo_back.png");
+    background-position: center;
+    background-size: 1670px 1050px;
+    background-repeat: no-repeat;
 }
 
 p {
@@ -23,11 +28,22 @@ p {
         width: 100%;
         margin: 0 auto;
 
-        .login_title {
-            font-size: 2rem;
-            font-weight: 600;
-            text-align: center;
-            margin-bottom: 35px;
+        .sec1_header {
+            display: flex;
+            justify-content: space-between;
+
+            .login_title {
+                font-size: 1.5rem;
+                font-weight: 600;
+                text-align: center;
+                margin-bottom: 35px;
+            }
+
+            .back_btn {
+                width: 25px;
+                height: 25px;
+                cursor: pointer;
+            }
         }
 
         .login_id_container {
@@ -35,13 +51,13 @@ p {
             width: 100%;
 
             .login_id_label {
-                font-size: 1rem;
+                font-size: 0.8rem;
                 color: $color-label;
                 margin-bottom: 10px;
             }
 
             #id {
-                @include box(98%, 50px);
+                @include box(98%, 40px);
                 border-radius: 15px;
                 border: rgba(102, 102, 102, 0.35) 1px solid;
                 padding: 5px;
@@ -52,14 +68,27 @@ p {
             margin-bottom: 30px;
             width: 100%;
 
+            .pw_error_msg {
+                font-size: 0.7rem;
+                color: red;
+                font-weight: 500;
+            }
+
             .login_pw_label {
-                font-size: 1rem;
+                font-size: 0.8rem;
                 color: $color-label;
                 margin-bottom: 10px;
             }
 
             #pw {
-                @include box(98%, 50px);
+                @include box(98%, 40px);
+                border-radius: 15px;
+                border: rgba(102, 102, 102, 0.35) 1px solid;
+                padding: 5px;
+            }
+
+            #pw_re {
+                @include box(98%, 40px);
                 border-radius: 15px;
                 border: rgba(102, 102, 102, 0.35) 1px solid;
                 padding: 5px;
@@ -67,7 +96,7 @@ p {
         }
 
         .login_button {
-            @include box(100%, 60px);
+            @include box(100%, 50px);
             padding: 0;
             background-color: $color-nonbtn;
             border: none;
@@ -87,7 +116,7 @@ p {
         display: flex;
         justify-content: space-evenly;
         align-items: center;
-        padding: 35px 0;
+        padding: 30px 0;
         width: 100%;
         margin: 0 auto;
 
@@ -122,18 +151,110 @@ p {
     }
 }
 
+.signup_container {
+    @extend .login_container;
+    @include box(35%, 570px);
+
+    .login_sec1 {
+
+        .login_id_container,
+        .login_pw_container {
+            margin-bottom: 50px;
+        }
+
+        .login_button {
+            margin-top: 10px;
+        }
+
+        .login_id_container {
+            height: 79px;
+
+            .id_input_content {
+                @include box(100%, 55px);
+                position: relative;
+
+                .duplicate_btn {
+                    @include box(100px, 30px);
+                    background-color: $color-btn;
+                    border-radius: 40px;
+                    border: none;
+                    color: $color-white;
+                    position: absolute;
+                    top: 20%;
+                    right: 2%;
+                }
+            }
+
+            .label_container {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                .label_alert {
+                    color: red;
+                    font-size: 0.7rem;
+                    font-weight: 500;
+                }
+            }
+
+            #nickname {
+                @include box(98%, 40px);
+                border-radius: 15px;
+                border: rgba(102, 102, 102, 0.35) 1px solid;
+                padding: 5px;
+            }
+
+            .react-datepicker-wrapper {
+                @include box(100%, 40px);
+
+                #birthday {
+                    @include box(98%, 40px);
+                    border-radius: 15px;
+                    border: rgba(102, 102, 102, 0.35) 1px solid;
+                    padding: 5px;
+                    text-align: center;
+                    outline: none;
+                }
+            }
+
+            #gender {
+                @include box(100%, 50px);
+                border-radius: 15px;
+                border: rgba(102, 102, 102, 0.35) 1px solid;
+                padding: 5px;
+                outline: none;
+            }
+        }
+    }
+
+    .login_sec2 {
+        @include box(100%, 60px);
+        padding-top: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: 400;
+
+        >a {
+            padding-left: 10px;
+            color: $color-black;
+        }
+    }
+}
+
 .loginpg_container {
     display: flex;
-    @include box(100%, 100%);
+    @include box(100%, 700px);
     align-items: center;
     justify-content: space-around;
 
     .loginpg_logo_zone {
-        @include box(45%, 100%);
+        @include box(45%, 450px);
 
         >img {
-            @include box(80%, 50%);
+            @include box(80%, 49%);
             position: relative;
+            top: 5%;
             left: 10%;
             z-index: 10;
         }
@@ -145,7 +266,7 @@ p {
             background-color: rgba(245, 248, 255, 0.7);
             @include box(100%, 200px);
             position: relative;
-            bottom: 40px;
+            bottom: 5%;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -154,7 +275,7 @@ p {
                 >p {
                     text-align: center;
                     font-size: 1rem;
-    
+
                     >span {
                         font-weight: 600
                     }
@@ -182,10 +303,25 @@ p {
             color: $color-white;
             margin-top: 30px;
             margin-left: 7%;
-    
+
             &:hover {
                 background-color: $color-btn;
             }
+        }
+    }
+}
+
+.signuppg_container {
+    @include box(100%, 700px);
+
+    .signuppg_sec1 {
+        @include box(100%, 70px);
+        display: flex;
+        justify-content: center;
+        margin-top: 1%;
+
+        .logo_mini {
+            @include box(50px, 40px);
         }
     }
 }

@@ -1,10 +1,10 @@
 import React from 'react'
-import PostPage from './pages/PostPage'
+import SignupPage from './pages/SignupPage'
 
 const App = () => {
   return (
     <div>
-      <PostPage />
+      <SignupPage />
     </div>
   )
 }

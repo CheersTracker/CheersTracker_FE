@@ -5,7 +5,6 @@ import google from '../assets/images/login_google.png'
 const Login = () => {
     const [id, setId] = useState('');
     const [password, setPassword] = useState('');
-    const [showPassword, setShowPassword] = useState(false);
 
     return (
         <div className='login_container'>
