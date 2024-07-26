@@ -1,0 +1,397 @@
+.main-container {
+    display: flex;
+}
+.drink-create-big-container {
+    padding: 2rem;
+    background-color: rgba(248, 255, 251, 1);
+    width: calc(100% - 70px);
+
+    h2 {
+        font-size: 2rem;
+    }
+    .drink-create-top {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+    }
+    .btn-container {
+        display: flex;
+        gap: 10px;
+    }
+    .drink-create-cancel-btn {
+        background: rgba(238, 238, 238, 1);
+        box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.25);
+        color: #000000;
+        width: 10rem;
+        height: 2.5rem;
+        border-radius: 16px;
+    }
+    .drink-create-delete-btn {
+        background: rgba(121, 154, 234, 1);
+        color: rgba(255, 255, 255, 1);
+        width: 10rem;
+        height: 2.5rem;
+        border-radius: 16px;
+        box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.25);
+        font-weight: 700;
+    }
+}
+.drink-create-main-container {
+    padding: 1rem;
+    border-radius: 19px;
+    background: rgba(255, 255, 255, 1);
+    box-shadow: -3px 0px 5px 0px rgba(0, 0, 0, 0.1), 2px 2px 6px 0px rgba(0, 0, 0, 0.1), 0px 16px 24px 0px rgba(0, 0, 0, 0.07);
+    height: 90%;
+    > div {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+.calendar-big-container {
+    width: 15%;
+    display: flex;
+    align-items: center;
+
+    .calendar-toggle {
+        display: flex;
+        align-items: center;    
+        position: relative;
+    }
+}
+
+.react-calendar {
+    border-radius: 10px;
+    border: 1px solid var(--festie-gray-400, #c8c8c8);
+    width: 10rem;
+    position: absolute;
+    bottom: -120px;
+    background-color: #fff;
+    z-index: 1;
+}
+
+.react-calendar__navigation__label > span {
+    color: var(--festie-gray-800, #3a3a3a);
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 140%;
+}
+
+
+
+.drink-create-main-right {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.drink-time-dropdown-container {
+    position: relative;
+    display: inline-block;
+    box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.15);
+    background-color: rgba(246, 246, 246, 1);
+    padding: 1rem;
+    border-radius: 20px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+
+    .drink-time-dropdown-toggle {
+        display: flex;
+        align-items: center;
+    }
+}
+  
+.drink-time-dropdown-togglee {
+    background: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+  
+.drink-time-dropdown-options {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    margin-top: 5px;
+    width: 100%;
+    z-index: 1;
+}
+  
+.drink-time-dropdown-option {
+    padding: 10px;
+    cursor: pointer;
+    &:hover {
+      background: #f0f0f0;
+    }
+}
+  
+.weather-big-container {
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+    background: rgba(246, 246, 246, 1);
+    gap: 1rem;
+    box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.15);
+    padding: 1rem;
+
+    > p {
+        font-weight: 500;
+    }
+
+    .weather-container {
+        display: flex;
+        align-items: flex-end;
+
+        &:hover {
+            cursor: pointer;
+            > img {
+                filter: grayscale(0);
+            }
+        }
+
+        img {
+            width: 2rem;
+            height: 2rem;
+            filter: grayscale(100%);
+        }
+        p {
+            font-weight: 200;
+        }
+    }
+
+    .selected {
+        > img {
+            filter: grayscale(0);
+        }
+        > p {
+            font-weight: 500;
+        }
+    }
+}
+
+.mood-big-container {
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+    background: rgba(246, 246, 246, 1);
+    gap: 1rem;
+    box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.15);
+    padding: 1rem;
+
+    > p {
+        font-weight: 500;
+    }
+
+    .mood-container {
+        display: flex;
+        align-items: flex-end;
+        font-weight: 200;
+        &:hover {
+            cursor: pointer;
+            > img {
+                filter: grayscale(0);
+            }
+        }
+
+        img {
+            width: 2rem;
+            height: 2rem;
+            filter: grayscale(100%);
+        }
+    }
+
+    .selected {
+        > img {
+            filter: grayscale(0);
+        }
+        > p {
+            font-weight: 500;
+        }
+    }
+}
+
+// 음주 체크박스
+.alcohol-quantity {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    
+    input[type='checkbox'] {
+        width: 20px;
+        height: 20px;
+        border: 1.45px solid rgba(204, 204, 204, 1);
+        border-radius: 3px;
+        position: relative;
+        cursor: pointer;
+        background-color: white;
+
+        &:checked {
+            background-color: #000;
+
+            &::after {
+                content: '';
+                position: absolute;
+                top: -1px;
+                left: 5px;
+                width: 6px;
+                height: 12px;
+                border: solid white;
+                border-width: 0 2px 2px 0;
+                transform: rotate(45deg);
+            }
+        }
+    }
+
+    .quantity-button {
+        color: rgba(204, 204, 204, 1);
+        border: 1.45px solid rgba(204, 204, 204, 1);
+        padding: 0.5rem 1rem;
+        border-radius: 50%;
+        cursor: not-allowed;
+        width: 2rem;
+        height: 2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2rem;
+
+        &.active {
+            cursor: pointer;
+        }
+
+        &:disabled {
+            cursor: not-allowed;
+        }
+    }
+
+    .quantity-display {
+        color: gray;
+        font-size: 1.2rem;
+
+        &.active {
+            color: black;
+        }
+    }
+}
+
+.drink-options-big-container {
+    display: flex;
+    justify-content: space-between;
+    border-top: 0.5px solid rgba(180, 180, 180, 1);
+    margin-top: 1rem;
+
+    .drink-options-group {
+        display: flex;
+        flex-direction: column;
+        width: 48%;
+        margin-top: 1rem;
+    }
+    .alcohol-quantity {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem;
+    }
+    .drink-type {
+        display: flex;
+        align-items: center;
+        width: 13rem;
+
+        .drink-type-name {
+            font-size: 1.3rem;
+            font-weight: 500;
+        }
+
+        .drink-description {
+            position: absolute;
+            font-size: 0.8rem;
+            color: rgba(155, 155, 155, 1);
+        }
+
+        .drink-description2 {
+            font-size: 0.9rem;
+        }
+    }
+
+    .quantity-button {
+        cursor: pointer;
+    }
+    
+    .quantity-display {
+        min-width: 20px;
+        text-align: center;
+    }
+}
+
+.ment-container {
+    position: relative;
+    .ment1 {
+        color: rgba(121, 154, 234, 1);
+        text-align: center;
+        width: 100%;
+        font-size: 1rem;
+        margin-top: 16px;
+    }
+    >div {
+        position: absolute;
+        color: rgb(118, 118, 118);
+        right: 0;
+        flex-direction: column;
+        display: flex;
+        align-items: flex-end;
+
+        >div {
+            display: flex;
+        align-items: flex-end;
+
+            >p:nth-child(1) {
+                font-size: 0.8rem;
+                font-weight: 300;
+                margin-right: 4px;
+            }
+            >p:nth-child(2) {
+                display: flex;
+                gap: 4px;
+                p {
+                    font-weight: 400;
+                }
+            }
+        }
+    }
+
+}
+
+
+.drink-create-memo-container {
+    display: flex;
+    flex-direction: column;
+    height: 46%;
+
+    h2 {
+        margin-top: 1rem;
+        padding: 1rem 0;
+        border-top: 0.5px solid rgb(180, 180, 180);
+        font-size: 1rem;
+        font-weight: 500;
+    }
+
+    textarea {
+        border: 0.7px solid rgba(166, 166, 166, 1);
+        border-radius: 5px;
+        height: 100%;
+        padding: 1rem;
+        resize: none;
+        overflow-y: scroll;
+        &:focus {
+            outline: none;
+        }
+    }
+    
+}

@@ -1,0 +1,81 @@
+.main-container {
+    display: flex;
+}
+.drink-log-big-container {
+
+    margin: 1rem 0;
+    padding: 1rem 0;
+    border-top: 0.5px solid rgb(180, 180, 180);
+    border-bottom: 0.5px solid rgb(180, 180, 180);
+
+    .drink-column {
+        width: 48%;
+    }
+    .drink-item {
+        display: flex;
+        align-items: center;
+        margin: 1rem;
+
+        .drink-item-flex {
+            display: flex;
+            position: relative;
+        }
+        .drink-description {
+            position: absolute;
+            width: 18rem;
+            bottom: -17px;
+        }
+        .drink-quantity {
+            display: flex;
+            align-items: center;
+
+            >p:nth-child(1) {
+                font-size: 1.3rem;
+            }
+        }
+        img {
+            width: 4rem;
+        }
+        >p:nth-child(2) {
+            font-size: 1.3rem;
+            font-weight: 600;
+            width: 10rem;
+        }
+        >p:nth-child(3) {
+            font-size: 1.3rem;
+        }
+        >div {
+            >div {
+                >p:nth-child(1) {
+                    font-size: 1.3rem;
+                    font-weight: 600;
+                    width: 18rem;
+                }
+                >p:nth-child(2) {
+                    font-size: 1.3rem;
+                }
+            }
+        }
+        
+        
+    }
+}
+.weather-item,
+.mood-item {
+    display: flex;
+    align-items: flex-end;
+}
+.memo-container {
+    display: flex;
+    flex-direction: column;
+    
+    h2 {
+        font-size: 1rem;
+        font-weight: 500;
+        margin-bottom: 1rem;
+    }
+    p {
+        height: 8rem;
+        overflow-y: scroll;
+    }
+}
