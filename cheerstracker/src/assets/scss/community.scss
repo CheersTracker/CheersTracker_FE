@@ -19,17 +19,18 @@ body {
     top: 65px;
     cursor: pointer;
 
+    &:hover {
+        background-color: $color-writebtn;
+
+        .write_pen {
+            color: $color-white;
+        }
+
+    }
+
     .write_pen {
         @include box(25px, 25px);
         color: $color-writebtn;
-
-        &:hover {
-            color: $color-white;
-        }
-    }
-
-    &:hover {
-        background-color: $color-writebtn
     }
 }
 
@@ -93,6 +94,18 @@ body {
                     align-items: center;
                     color: $color-commentitem;
                     font-weight: 500;
+
+                    .fillheart {
+                        @include box(17px, 17px);
+                        color: $color-red;
+                        cursor: pointer;
+                    }
+
+                    .heart,
+                    .comment {
+                        @include box(17px, 17px);
+                        cursor: pointer;
+                    }
 
                     >span {
                         padding-left: 5px;

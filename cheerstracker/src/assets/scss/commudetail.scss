@@ -1,0 +1,261 @@
+@import './setting/utils';
+@import './setting/variables';
+@import './community.scss';
+@import './search.scss';
+
+.commu_detail_container {
+    width: 95%;
+    border-radius: 15px;
+    background-color: $color-white;
+    box-shadow:
+        -3px 0px 5px rgba(0, 0, 0, 0.07),
+        2px 2px 6px rgba(0, 0, 0, 0.07);
+    padding: 20px;
+    position: absolute;
+    right: 0.25%;
+
+    .detail_list_box {
+        @include box(120px, 94px);
+        background-color: $color-white;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        border: 0.5px solid $color-list;
+        border-radius: 5px;
+        position: absolute;
+        right: 25px;
+        z-index: 20;
+
+        >li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 7px 10px;
+            font-size: 0.8rem;
+            cursor: pointer;
+
+            &:not(:last-child) {
+                border-bottom: 0.5px solid $color-toolbar;
+            }
+
+            .li1,
+            .li3 {
+                color: $color-listspan;
+            }
+
+            .li2 {
+                color: $color-red;
+            }
+
+            .li2_icon {
+                color: $color-red;
+            }
+        }
+    }
+
+    .detail_sec1 {
+        @include box(100%, 100px);
+        display: grid;
+        padding-bottom: 10px;
+        border-bottom: 1px solid $color-toolbar;
+        position: relative;
+
+        .detail_category {
+            display: flex;
+            align-items: center;
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        .detail_title {
+            display: flex;
+            align-items: center;
+            font-size: 1.3rem;
+        }
+
+        .list_box {
+            display: flex;
+            align-items: end;
+
+            .list_nick {
+                display: flex;
+                align-items: center;
+                font-size: 0.7rem;
+                font-weight: 400;
+                justify-content: flex-end;
+                padding-right: 1%;
+            }
+
+            .box_time {
+                color: $color-commentitem;
+                font-size: 0.7rem;
+                padding-right: 1%;
+            }
+
+            .box_content {
+                display: flex;
+
+                .content_item {
+                    display: flex;
+                    color: $color-commentitem;
+                    font-weight: 500;
+
+                    >span {
+                        padding-left: 5px;
+                        font-size: 0.7rem;
+                    }
+                }
+
+                .eye {
+                    @include box(15px, 15px);
+                }
+            }
+        }
+
+        .detail_list {
+            @include box(20px, 20px);
+            position: absolute;
+            right: 0;
+            color: #989898;
+            cursor: pointer;
+        }
+    }
+
+    .detail_sec2 {
+
+        .detail_content {
+            position: relative;
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+
+        .box_content {
+            display: flex;
+
+            .content_item {
+                display: flex;
+                color: $color-commentitem;
+                font-weight: 500;
+
+                .fillheart {
+                    @include box(25px, 25px);
+                    color: $color-red;
+                    cursor: pointer;
+                }
+
+                >span {
+                    padding-left: 5px;
+                    padding-right: 20px;
+                    font-size: 1.1rem;
+                }
+
+                .heart,
+                .comment {
+                    @include box(25px, 25px);
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
+    .comment_box {
+        @include box(100%, auto);
+        border-top: 1px solid $color-toolbar;
+        padding-top: 20px;
+        margin-top: 15px;
+
+        .comment_list {
+            @include box(100%, auto);
+
+            .recomment {
+                display: flex;
+                @include box(100%, auto);
+
+                .recommet_arrow {
+                    @include box(25px, 25px);
+                    padding: 20px;
+                    right: 0.25%;
+                    position: relative;
+                    margin-top: 1%;
+                }
+            }
+        }
+
+        .comment_input_container {
+
+            .input_box_container {
+                display: flex;
+                align-items: center;
+
+                .comment_input_box {
+                    @include box(97.5%, 20px);
+                    padding: 15px;
+                    outline: none;
+                    background-color: $color-postback;
+                    border: none;
+                    border-radius: 20px;
+                    box-shadow:
+                        -3px 0px 5px rgba(0, 0, 0, 0.1),
+                        2px 2px 6px rgba(0, 0, 0, 0.1);
+
+                    &:focus {
+                        background-color: $color-white;
+                    }
+                }
+
+                .comment_sendBtn {
+                    @include box(23px, 23px);
+                    position: absolute;
+                    right: 3%;
+                    cursor: pointer;
+                }
+            }
+
+            >p {
+                font-size: 0.8rem;
+                text-align: end;
+                margin-top: 5px;
+
+                >span {
+                    border-bottom: 1px solid $color-black;
+                    cursor: pointer;
+                }
+            }
+        }
+
+    }
+}
+
+.commu_detailpg_container {
+    @include box(100%, 700px);
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    .commupg_header {
+        @include box(100%, 120px);
+        display: flex;
+        position: fixed;
+        z-index: 10;
+        background-color: $color-body;
+
+        .header_search_cate {
+            @include box(100%, 80px);
+        }
+    }
+
+    .commu_list_area {
+        @include box(83%, 91%);
+        position: relative;
+        top: 120px;
+        left: 13%;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        margin-top: 1em;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
+    }
+}

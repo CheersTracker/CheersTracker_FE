@@ -1,10 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { GoPerson } from "react-icons/go";
 import { AiOutlineEye } from "react-icons/ai";
-import { GoHeart } from "react-icons/go";
+import { GoHeart, GoHeartFill } from "react-icons/go";
 import { LiaComment } from "react-icons/lia";
 
 const CommuList = () => {
+    const [clickHeart, setClickHeart] = useState(false);
+
+    const handleClickHeart = () => {
+        setClickHeart(!clickHeart);
+    };
+
     return (
         <div className='community_list_container'>
             <section className='list_sec1'>
@@ -24,7 +30,11 @@ const CommuList = () => {
                             <span>127</span>
                         </div>
                         <div className="content_item heart_item">
-                            <GoHeart />
+                            {clickHeart ? (
+                                <GoHeartFill className='fillheart' onClick={handleClickHeart} />
+                            ) : (
+                                <GoHeart className='heart' onClick={handleClickHeart} />
+                            )}
                             <span>14</span>
                         </div>
                         <div className="content_item comment_item">

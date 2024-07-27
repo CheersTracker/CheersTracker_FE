@@ -11,7 +11,7 @@ const CommunityPage = () => {
   const categories = ['전체', '음주', '금주', 'Q&A'];
 
   const handleClick = (index) => {
-    setActiveIndex(index); // 클릭한 항목의 인덱스를 상태로 설정
+    setActiveIndex(index);
   };
 
   return (

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 import ReactDOM from 'react-dom'; 
 import ReactQuill from "react-quill";
 import '../assets/scss/post.scss';
