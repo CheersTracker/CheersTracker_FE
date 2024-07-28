@@ -90,10 +90,11 @@ p {
             }
 
             #pw_re {
-                @include box(98%, 40px);
-                border-radius: 15px;
-                border: rgba(102, 102, 102, 0.35) 1px solid;
-                padding: 5px;
+                @extend #pw ;
+            }
+
+            #current_pw {
+                @extend #pw ;
             }
         }
 
@@ -321,6 +322,22 @@ p {
     background-position: center;
     background-size: 1750px 1040px;
     background-repeat: no-repeat;
+
+    .signuppg_sec1 {
+        @include box(100%, 70px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-top: 1.5%;
+
+        .logo_mini {
+            @include box(50px, 40px);
+        }
+    }
+}
+
+.repwpg_container {
+    @include box(100%, 778px);
 
     .signuppg_sec1 {
         @include box(100%, 70px);
