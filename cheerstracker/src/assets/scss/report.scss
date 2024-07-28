@@ -1,0 +1,84 @@
+@import './setting/utils';
+@import './setting/variables';
+
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+
+    .modal {
+        @include box(250px, 250px);
+        background-color: $color-white;
+        display: grid;
+        justify-content: center;
+        padding: 30px;
+        box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.3);
+        border-radius: 23px;
+
+        .modal-icon {
+            @include box(40px, 40px);
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-bottom: 20px;
+        }
+
+        >p {
+            @include box(220px, 100px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-top: 1px solid $color-toolbar;
+            font-size: 1.1rem;
+            font-weight: 400;
+        }
+
+        .modal-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            @include box(220px, 80px);
+
+            .confirm-btn {
+                @include box(90px, 30px);
+                border: none;
+                background-color: $color-reportcancel;
+                border-radius: 10px;
+                box-shadow: 0 5.02px 23.84px 0 rgba(138, 40, 40, 0.3);
+                cursor: pointer;
+            }
+
+            .cancel-btn {
+                @include box(90px, 30px);
+                border: none;
+                background-color: $color-reportconfirm;
+                border-radius: 10px;
+                box-shadow: 0 4.51px 21.42px 0 rgba(86, 120, 240, 0.5);
+                cursor: pointer;
+            }
+        }
+
+        .modal-actions2 {
+            display: flex;
+            justify-content: center;
+            align-items: end;
+            @include box(220px, 80px);
+
+            .close-btn {
+                @include box(90px, 30px);
+                border: none;
+                background-color: $color-reportconfirm;
+                border-radius: 10px;
+                box-shadow: 0 4.51px 21.42px 0 rgba(86, 120, 240, 0.5);
+                cursor: pointer;
+            }
+        }
+    }
+}

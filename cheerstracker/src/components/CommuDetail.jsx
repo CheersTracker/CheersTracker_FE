@@ -15,6 +15,7 @@ const CommuDetail = () => {
     const [showComments, setShowComments] = useState(false);
     const [showReComments, setShowReComments] = useState(false);
     const [showCancel, setShowCancel] = useState(false);
+    const [showReCancel, setShowReCancel] = useState(false);
     const [showList, setShowLists] = useState(false);
     const [clickHeart, setClickHeart] = useState(false);
 
@@ -42,11 +43,37 @@ const CommuDetail = () => {
         setShowCancel(false);
     };
 
+    const handleReFocus = () => {
+        setShowReCancel(true);
+    };
+
+    const handleReBlur = () => {
+        setShowReCancel(false);
+    };
+
     const handleCancel = () => {
         if (inputRef.current) {
             inputRef.current.blur();
         }
-        setShowCancel(false);
+        setShowReCancel(false);
+    };
+
+    const handleReCancel = () => {
+        if (inputRef.current) {
+            inputRef.current.blur();
+        }
+        setShowReCancel(false);
+    };
+
+    const handleCopyURL = () => {
+        const urlToCopy = window.location.href;
+        navigator.clipboard.writeText(urlToCopy)
+            .then(() => {
+                alert('URL이 복사되었습니다!');
+            })
+            .catch(err => {
+                console.error('URL 복사 실패:', err)
+            });
     };
 
     return (
@@ -72,7 +99,7 @@ const CommuDetail = () => {
                 <ul className='detail_list_box'>
                     <li><span className='li1'>수정하기</span><LuPencil className='li_icon li1_icon' /></li>
                     <li><span className='li2'>삭제하기</span><FaRegTrashAlt className='li_icon li2_icon' /></li>
-                    <li><span className='li3'>URL복사</span><BsShare className='li_icon li3_icon' /></li>
+                    <li><span className='li3' onClick={handleCopyURL}>URL복사</span><BsShare className='li_icon li3_icon' /></li>
                 </ul>
             )}
             <section className='detail_sec2'>
@@ -120,6 +147,24 @@ const CommuDetail = () => {
                             <Comment onClick={toggleReComments} />
                             {showReComments && (
                                 <div className="recomment_area">
+                                    <div className="recomment">
+                                        <BsArrowReturnRight className='recommet_arrow' />
+                                        <div className="input_box_container">
+                                            <input type="text"
+                                                className='comment_input_box'
+                                                ref={inputRef}
+                                                onFocus={handleReFocus}
+                                                onBlur={handleReBlur}
+                                                placeholder='댓글 추가'
+                                            />
+                                            {showCancel && (
+                                                <LuSendHorizonal className='comment_sendBtn' />
+                                            )}
+                                        </div>
+                                    </div>
+                                    {showReCancel && (
+                                        <p><span onClick={handleReCancel}>취소</span></p>
+                                    )}
                                     <div className="recomment">
                                         <BsArrowReturnRight className='recommet_arrow' />
                                         <ReComment />

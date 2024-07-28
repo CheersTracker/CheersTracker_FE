@@ -4,9 +4,27 @@ import { GoPerson } from "react-icons/go";
 import { GoHeart, GoHeartFill } from 'react-icons/go'
 import { LiaComment } from 'react-icons/lia'
 import { AiOutlineAlert } from "react-icons/ai";
+import ReportModal from './ReportModal';
+import ReportComModal from './ReportComModal';
 
 const ReComment = () => {
     const [clickHeart, setClickHeart] = useState(false);
+    const [showConfirmModal, setShowConfirmModal] = useState(false);
+    const [showCompleteModal, setShowCompleteModal] = useState(false);
+
+    const handleReportClick = () => {
+        setShowConfirmModal(true);
+    };
+
+    const handleCloseModal = () => {
+        setShowConfirmModal(false);
+        setShowCompleteModal(false);
+    };
+
+    const handleConfirm = () => {
+        setShowConfirmModal(false);
+        setShowCompleteModal(true);
+    };
 
     const handleClickHeart = () => {
         setClickHeart(!clickHeart);
@@ -14,6 +32,15 @@ const ReComment = () => {
 
     return (
         <div className='recomment_container'>
+            <ReportModal
+                show={showConfirmModal}
+                onClose={handleCloseModal}
+                onConfirm={handleConfirm}
+            />
+            <ReportComModal
+                show={showCompleteModal}
+                onClose={handleCloseModal}
+            />
             <section className='comment_sec1'>
                 <div className="list_box">
                     <div className="list_nick">
@@ -23,7 +50,7 @@ const ReComment = () => {
                     <div className="box_time">3분전</div>
                 </div>
                 <p>
-                    <span className='p3'>신고하기<AiOutlineAlert /></span>
+                    <span className='p3' onClick={handleReportClick}>신고하기<AiOutlineAlert /></span>
                 </p>
             </section>
             <section className='comment_sec2'>

@@ -1,12 +1,31 @@
-import React, { useRef, useState } from 'react'
+import React, { useState } from 'react'
 import '../assets/scss/comment.scss'
+import '../assets/scss/report.scss'
 import { GoPerson } from "react-icons/go";
 import { GoHeart, GoHeartFill } from 'react-icons/go'
 import { LiaComment } from 'react-icons/lia'
 import { AiOutlineAlert } from "react-icons/ai";
+import ReportModal from './ReportModal';
+import ReportComModal from './ReportComModal';
 
 const Comment = ({ onClick }) => {
   const [clickHeart, setClickHeart] = useState(false);
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
+  const [showCompleteModal, setShowCompleteModal] = useState(false);
+
+  const handleReportClick = () => {
+    setShowConfirmModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowConfirmModal(false);
+    setShowCompleteModal(false);
+  };
+
+  const handleConfirm = () => {
+    setShowConfirmModal(false);
+    setShowCompleteModal(true);
+  };
 
   const handleClickHeart = () => {
     setClickHeart(!clickHeart);
@@ -14,6 +33,16 @@ const Comment = ({ onClick }) => {
 
   return (
     <div className='comment_container'>
+      <ReportModal
+        show={showConfirmModal}
+        onClose={handleCloseModal}
+        onConfirm={handleConfirm}
+        className='report_modal'
+      />
+      <ReportComModal
+        show={showCompleteModal}
+        onClose={handleCloseModal}
+      />
       <section className='comment_sec1'>
         <div className="list_box">
           <div className="list_nick">
@@ -25,7 +54,7 @@ const Comment = ({ onClick }) => {
         <p>
           <span className='p1'>수정</span>
           <span className='p2'>삭제</span>
-          <span className='p3'>신고하기<AiOutlineAlert /></span>
+          <span className='p3' onClick={handleReportClick}>신고하기<AiOutlineAlert /></span>
         </p>
       </section>
       <section className='comment_sec2'>
