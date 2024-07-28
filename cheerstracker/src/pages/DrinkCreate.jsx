@@ -238,10 +238,10 @@ const DrinkCreate = () => {
                   onChange={() => handleCheckboxChange(index)}
                 />
                 <div className='drink-type'>
-                  <p className='drink-type-name'>{drink.type}
+                  <p className={`drink-type-name ${drink.isChecked ? 'active' : ''}`}>{drink.type}
                     <p className='drink-description'>{drink.description}</p>
                   </p>
-                  <p className='drink-description2'>{drink.description2}</p>
+                  <p className={`drink-description2 ${drink.isChecked ? 'active' : ''}`}>{drink.description2}</p>
                 </div>
                 <button
                   className={`quantity-button ${drink.isChecked ? 'active' : ''}`}
@@ -272,10 +272,10 @@ const DrinkCreate = () => {
                   onChange={() => handleCheckboxChange(index + 3)}
                 />
                 <div className='drink-type'>
-                  <p className='drink-type-name'>{drink.type}
+                  <p className={`drink-type-name ${drink.isChecked ? 'active' : ''}`}>{drink.type}
                     <p className='drink-description'>{drink.description}</p>
                   </p>
-                  <p className='drink-description2'>{drink.description2}</p>
+                  <p className={`drink-description2 ${drink.isChecked ? 'active' : ''}`}>{drink.description2}</p>
                 </div>
                 <button
                   className={`quantity-button ${drink.isChecked ? 'active' : ''}`}

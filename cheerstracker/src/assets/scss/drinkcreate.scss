@@ -227,7 +227,7 @@
     input[type='checkbox'] {
         width: 20px;
         height: 20px;
-        border: 1.45px solid rgba(204, 204, 204, 1);
+        border: 2.45px solid rgba(204, 204, 204, 1);
         border-radius: 3px;
         position: relative;
         cursor: pointer;
@@ -235,6 +235,7 @@
 
         &:checked {
             background-color: #000;
+            border: 2.45px solid rgb(0, 0, 0) !important;
 
             &::after {
                 content: '';
@@ -255,7 +256,7 @@
         border: 1.45px solid rgba(204, 204, 204, 1);
         padding: 0.5rem 1rem;
         border-radius: 50%;
-        cursor: not-allowed;
+        cursor: auto;
         width: 2rem;
         height: 2rem;
         display: flex;
@@ -265,15 +266,19 @@
 
         &.active {
             cursor: pointer;
+            color: black;
+            border-radius: 50%;
+            border: 1px solid;
         }
 
         &:disabled {
-            cursor: not-allowed;
+            cursor: auto;
         }
+        
     }
 
     .quantity-display {
-        color: gray;
+        color: rgba(180, 180, 180, 1);
         font-size: 1.2rem;
 
         &.active {
@@ -307,6 +312,7 @@
         .drink-type-name {
             font-size: 1.3rem;
             font-weight: 500;
+            color: rgba(155, 155, 155, 1);
         }
 
         .drink-description {
@@ -317,6 +323,10 @@
 
         .drink-description2 {
             font-size: 0.9rem;
+            color: rgba(155, 155, 155, 1);
+        }
+        .active {
+            color: #000;
         }
     }
 

@@ -28,7 +28,7 @@ $medium-screen: 768px;
     width: 72px;
 }
 .open {
-    width: 200px;
+    width: 220px;
 }
 .sidebar-big-container {
     
@@ -44,6 +44,7 @@ $medium-screen: 768px;
         width: 200px;
         position: absolute;
         bottom: 100px;
+        z-index: 1;
     }
     .sidebar-mini-logo {
         width: 32px;

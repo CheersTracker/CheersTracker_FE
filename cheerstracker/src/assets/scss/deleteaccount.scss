@@ -1,0 +1,57 @@
+// 회원탈퇴 모달창
+
+.user-delete-container {
+    border: 1.25px solid rgba(218, 218, 218, 1);
+    width: 300px;
+    height: 300px;
+    background-color: #fff;
+    border-radius: 23px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    padding: 1rem 3rem;
+    z-index: 3;
+    box-shadow: 0px 10.28px 30.85px 0px rgba(0, 0, 0, 0.3);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    p {
+        // margin: 1rem;
+    }
+
+    img {
+        width: 100%;
+        padding-bottom: 1rem;
+        border-bottom: 1.25px solid rgba(218, 218, 218, 1);
+        height: 3rem;
+    }
+
+    >div {
+        display: flex;
+        justify-content: space-between;
+        margin: 1rem;
+        width: 100%;
+
+        button {
+            padding: 0.5rem 1rem;
+            border-radius: 11px;
+        }
+
+        >button:nth-child(1) {
+            background-color: rgba(255, 137, 137, 1);
+            box-shadow: 0px 5.02px 23.84px 0px rgba(138, 40, 40, 0.3);
+
+        }
+
+        >button:nth-child(2) {
+            background-color: rgba(187, 206, 250, 1);
+            box-shadow: 0px 4.51px 21.42px 0px rgba(86, 120, 240, 0.5);
+
+
+
+        }
+    }
+}
