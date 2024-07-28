@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import Search from '../components/Search'
 import '../assets/scss/search.scss'
 import '../assets/scss/community.scss'
-import WriteBtn from '../components/WriteBtn'
 import CommuList from '../components/CommuList'
 
 const MyCommunity = () => {
@@ -31,7 +30,6 @@ const MyCommunity = () => {
             ))}
           </ul>
         </div>
-        <WriteBtn />
       </section>
       <section className="commu_list_area">
         <div className="commu_list_item">
