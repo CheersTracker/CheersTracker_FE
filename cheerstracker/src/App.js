@@ -6,6 +6,7 @@ import DrinkDetail from './pages/DrinkDetail'
 import NoDrinkCreate from './pages/NoDrinkCreate'
 import NoDrinkDetail from './pages/NoDrinkDetail'
 import DeleteAccount from './components/DeleteAccount';
+import MyPage from './pages/MyPage';
 
 
 function App() {
@@ -13,12 +14,13 @@ function App() {
     <div className='main-container'>
       <SideBar/>
       {/* <DeleteAccount/> */}
+      <MyPage/>
       <Router>
         <Routes>
-          <Route path="/" element={<NoDrinkCreate />} />
+          {/* <Route path="/" element={<NoDrinkCreate />} />
           <Route path="/detail" element={<NoDrinkDetail />} />
           <Route path="drink/" element={<DrinkCreate />} />
-          <Route path="drink/detail" element={<DrinkDetail />} />
+          <Route path="drink/detail" element={<DrinkDetail />} /> */}
         </Routes>
       </Router>
 

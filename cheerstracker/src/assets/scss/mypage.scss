@@ -1,0 +1,89 @@
+.mypage-main-container {
+    padding: 2rem;
+    background-color: rgb(248, 255, 251);
+    width: calc(100% - 70px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    h1 {
+        font-size: 2rem;
+    }
+}
+.mapage-account-container {
+    display: flex;
+    flex-direction: column;
+    font-size: 1.3rem;
+    gap: 1.2rem;
+    
+
+    h2 {
+        font-weight: 500;
+        font-size: 1.4rem;
+    }
+
+    h4 {
+        width: 6rem;
+    }
+
+    >div {
+        display: flex;
+        font-weight: 300;
+
+        >p {
+            font-weight: 600;
+            color: rgba(121, 154, 234, 1);
+
+        }
+    }
+    .change-password-btn {
+        box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.15);
+        border: 0.3px solid rgba(154, 154, 154, 1);
+        border-radius: 15px;
+        padding: 0.5rem;
+        background-color: #fff;
+        font-weight: 500;
+        width: 10rem;
+        font-size: 1.1rem;
+        margin-left: 6rem;
+
+    }
+}
+
+.mypage-line {
+    width: 100%;
+    border: 0.7px solid rgba(185, 185, 185, 1)
+}
+
+.mypage-mypost-container {
+    gap: 1.2rem;
+    display: flex;
+    font-size: 1.3rem;
+    flex-direction: column;
+    
+
+    h2 {
+        font-weight: 500;
+        font-size: 1.4rem;
+    }
+
+    >div {
+        display: flex;
+        align-items: center;
+        font-weight: 300;
+    }
+
+    img {
+        width: 2rem;
+        height: 2rem;
+        margin-right: 1rem;
+    }
+}
+
+.delete-account-btn {
+    color: rgba(117, 117, 117, 1);
+    font-size: 1rem;
+    text-align: left;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
