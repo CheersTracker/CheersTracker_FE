@@ -2,7 +2,7 @@ import React from 'react';
 import '../assets/scss/deleteaccount.scss';
 import alert from '../assets/images/alert.svg';
 
-const DeleteAccount = () => {
+const DeleteAccount1 = () => {
   return (
     <div className='user-delete-container'>
         <img src={alert} alt="경고 아이콘" />
@@ -15,4 +15,4 @@ const DeleteAccount = () => {
   )
 }
 
-export default DeleteAccount
+export default DeleteAccount1

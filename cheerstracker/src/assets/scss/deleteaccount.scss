@@ -1,6 +1,7 @@
 // 회원탈퇴 모달창
 
-.user-delete-container {
+.user-delete-container,
+.user-deleted-container {
     border: 1.25px solid rgba(218, 218, 218, 1);
     width: 300px;
     height: 300px;
@@ -54,4 +55,16 @@
 
         }
     }
+}
+
+// 회원탈퇴 확인 모달창
+.user-deleted-container {
+
+    button {
+        background-color: rgba(187, 206, 250, 1);
+        box-shadow: 0px 4.51px 21.42px 0px rgba(86, 120, 240, 0.5);
+        padding: 0.5rem 1rem;
+        border-radius: 11px;
+    }
+
 }
