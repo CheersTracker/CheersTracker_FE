@@ -40,9 +40,13 @@ const NoDrinkDetail = () => {
                         <p>님의 금주 기록</p>
 
                         {/* 공개 비공개 버튼 자리 */}
-                        <div>
-
-                        </div>
+                    
+                        <input type="checkbox" id="toggle" hidden />
+                        <label for="toggle" class="toggleSwitch">
+                            <span class="toggleButton"></span>
+                            <p class="public">공개</p>
+                            <p class="private">비공개</p>
+                        </label>                   
                     </div>
                 </div>
                 <div className='nodrink-detail-header-right'>

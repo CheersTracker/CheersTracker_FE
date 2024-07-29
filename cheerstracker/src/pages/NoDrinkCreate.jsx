@@ -260,9 +260,11 @@ const NoDrinkCreate = () => {
               </div>
             </div>
           ))}
+          <div className='drink-option'></div>
         </div>
         </div>
         <div className='nodrink-goal-container'>
+          <p>단위 : 병</p>
           <h3>금주 목표(나에게 한마디)</h3>
           <input
             type="text"

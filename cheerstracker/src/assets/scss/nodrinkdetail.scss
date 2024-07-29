@@ -24,6 +24,7 @@
         font-weight: 500;
         >div {
             display: flex;
+            align-items: center;
         }
     }
     .nodrink-detail-header-right {
@@ -77,6 +78,14 @@
 }
 
 .nodrink-goal-container {
+    position: relative;
+    >p {
+        color: rgba(118, 118, 118, 1);
+        position: absolute;
+        right: 0;
+        top: -40px;
+
+    }
     h3 {
         font-weight: 500;
         font-size: 1.3rem;
@@ -175,4 +184,69 @@
         color: rgba(180, 180, 180, 1);
 
     }
+}
+.toggleSwitch {
+    width: 100px;
+    height: 50px;
+    display: block;
+    position: relative;
+    border-radius: 30px;
+    box-shadow: 2px 1px 6px 0px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    background-color: rgba(255, 255, 255, 1);
+    margin-left: 1rem;
+
+    >p {
+        font-weight: 500;
+    }
+}
+
+.toggleSwitch .toggleButton {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 50%;
+    left: 4px;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    background-color: rgba(187, 206, 250, 1);
+    border: 1px solid rgba(87, 128, 230, 1);
+    box-shadow: 3.69px 1.85px 11.08px 0px rgba(0, 0, 0, 0.25);
+    transition: all 0.2s ease-in;
+}
+
+.toggleSwitch .public,
+.toggleSwitch .private {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0;
+    transition: all 0.2s ease-in;
+}
+
+.toggleSwitch .public {
+    left: 60px;
+}
+
+.toggleSwitch .private {
+    right: 47px;
+    display: none;
+    width: 3rem;
+}
+
+#toggle:checked + .toggleSwitch .toggleButton {
+    left: calc(100% - 44px);
+    background-color: rgba(121, 154, 234, 1);
+    border: 1px solid rgba(87, 128, 230, 1);
+    box-shadow: 0px 0px 18.66px 0px rgba(0, 0, 0, 0.25);
+}
+
+#toggle:checked + .toggleSwitch .public {
+    display: none;
+}
+
+#toggle:checked + .toggleSwitch .private {
+    display: block;
 }

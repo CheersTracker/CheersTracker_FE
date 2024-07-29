@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import Calendar from 'react-calendar';
 import moment from 'moment';
 import '../assets/scss/drinkcreate.scss';
@@ -19,8 +19,15 @@ import Whisky from '../assets/images/whisky.svg';
 import Wine from '../assets/images/wine.svg';
 
 const DrinkCreate = () => {
-  // 날짜
-  const [value, setValue] = useState(new Date());
+  const navigate = useNavigate();
+  const location = useLocation();
+  const data = location.state || {};
+
+  const [value, setValue] = useState(() => {
+    const dateFromData = new Date(data.date);
+    return isNaN(dateFromData.getTime()) ? new Date() : dateFromData;
+  });
+
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
 
   const onChange = (date) => {
@@ -32,9 +39,8 @@ const DrinkCreate = () => {
     setIsCalendarOpen(!isCalendarOpen);
   };
 
-  // 음주 시간 드롭다운
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState('음주 시간 선택');
+  const [selectedOption, setSelectedOption] = useState(data.duration || '음주 시간 선택');
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -45,9 +51,8 @@ const DrinkCreate = () => {
     setIsDropdownOpen(false);
   };
 
-  // 날씨 & 기분 선택
-  const [selectedWeather, setSelectedWeather] = useState('');
-  const [selectedMood, setSelectedMood] = useState('');
+  const [selectedWeather, setSelectedWeather] = useState(data.weather || '');
+  const [selectedMood, setSelectedMood] = useState(data.mood || '');
 
   const handleWeatherSelect = (weather) => {
     setSelectedWeather(weather);
@@ -57,15 +62,29 @@ const DrinkCreate = () => {
     setSelectedMood(mood);
   };
 
-  // 음주 체크박스와 수량
   const [drinkOptions, setDrinkOptions] = useState([
-    { type: '맥주', isChecked: false, quantity: 0, description: '' , description2: '',img:{Beer}},
-    { type: '소주', isChecked: false, quantity: 0, description: '', description2: '' ,img:{Soju}},
-    { type: '과실주', isChecked: false, quantity: 0, description: '' , description2: '(와인, 포도주)',img:{Wine}},
-    { type: '기타주', isChecked: false, quantity: 0, description: '칵테일, 진, 인삼주 등' , description2: '',img:{Cocktail}},
-    { type: '증류주', isChecked: false, quantity: 0, description: '소주 외 (위스키, 브랜디, 럼 등)' , description2: '',img:{Whisky}},
-    { type: '발효주', isChecked: false, quantity: 0, description: '맥주, 과실주 외 (탁주, 약주, 청주 등)' , description2: '(막걸리)',img:{Makgeolli}},
+    { type: '맥주', isChecked: false, quantity: 0, description: '', description2: '', img: Beer },
+    { type: '소주', isChecked: false, quantity: 0, description: '', description2: '', img: Soju },
+    { type: '과실주', isChecked: false, quantity: 0, description: '', description2: '(와인, 포도주)', img: Wine },
+    { type: '기타주', isChecked: false, quantity: 0, description: '칵테일, 진, 인삼주 등', description2: '', img: Cocktail },
+    { type: '증류주', isChecked: false, quantity: 0, description: '소주 외 (위스키, 브랜디, 럼 등)', description2: '', img: Whisky },
+    { type: '발효주', isChecked: false, quantity: 0, description: '맥주, 과실주 외 (탁주, 약주, 청주 등)', description2: '(막걸리)', img: Makgeolli },
   ]);
+
+  useEffect(() => {
+    if (data.drinks) {
+      const updatedOptions = drinkOptions.map((option) => {
+        const found = data.drinks.find((drink) => drink.type === option.type);
+        return {
+          ...option,
+          isChecked: found ? found.isChecked : option.isChecked,
+          quantity: found ? found.quantity : option.quantity,
+          description: found ? found.description : option.description
+        };
+      });
+      setDrinkOptions(updatedOptions);
+    }
+  }, [data.drinks]);
 
   const handleCheckboxChange = (index) => {
     setDrinkOptions((prevOptions) =>
@@ -98,10 +117,7 @@ const DrinkCreate = () => {
   const firstColumn = drinkOptions.slice(0, 3);
   const secondColumn = drinkOptions.slice(3, 6);
 
-  // 메모
-  const [memo, setMemo] = useState('');
-
-  const navigate = useNavigate();
+  const [memo, setMemo] = useState(data.memo || '');
 
   const handleSave = () => {
     navigate('/detail', {
@@ -145,7 +161,6 @@ const DrinkCreate = () => {
           </div>
 
           <div className='drink-create-main-right'>
-            {/* 음주시간 드롭다운 */}
             <div className='drink-time-dropdown-container'>
               <div className='drink-time-dropdown-toggle' onClick={toggleDropdown}>
                 {selectedOption}
@@ -154,36 +169,28 @@ const DrinkCreate = () => {
               {
                 isDropdownOpen && (
                   <div className='drink-time-dropdown-options'>
-                    <div className='drink-time-dropdown-option line'
-                      onClick={() => handleOptionSelect('1시간 미만')}>
+                    <div className='drink-time-dropdown-option line' onClick={() => handleOptionSelect('1시간 미만')}>
                       1시간 미만
                     </div>
-                    <div className='drink-time-dropdown-option line'
-                      onClick={() => handleOptionSelect('1~2시간')}>
+                    <div className='drink-time-dropdown-option line' onClick={() => handleOptionSelect('1~2시간')}>
                       1~2시간
                     </div>
-                    <div className='drink-time-dropdown-option line'
-                      onClick={() => handleOptionSelect('2~3시간')}>
+                    <div className='drink-time-dropdown-option line' onClick={() => handleOptionSelect('2~3시간')}>
                       2~3시간
                     </div>
-                    <div className='drink-time-dropdown-option line'
-                      onClick={() => handleOptionSelect('3~4시간')}>
+                    <div className='drink-time-dropdown-option line' onClick={() => handleOptionSelect('3~4시간')}>
                       3~4시간
                     </div>
-                    <div className='drink-time-dropdown-option line'
-                      onClick={() => handleOptionSelect('4시간 이상 6시간 미만')}>
+                    <div className='drink-time-dropdown-option line' onClick={() => handleOptionSelect('4시간 이상 6시간 미만')}>
                       4시간 이상 6시간 미만
                     </div>
-                    <div className='drink-time-dropdown-option line'
-                      onClick={() => handleOptionSelect('6시간 이상 12시간 미만')}>
+                    <div className='drink-time-dropdown-option line' onClick={() => handleOptionSelect('6시간 이상 12시간 미만')}>
                       6시간 이상 12시간 미만
                     </div>
-                    <div className='drink-time-dropdown-option line'
-                      onClick={() => handleOptionSelect('12시간 이상 18시간 미만')}>
+                    <div className='drink-time-dropdown-option line' onClick={() => handleOptionSelect('12시간 이상 18시간 미만')}>
                       12시간 이상 18시간 미만
                     </div>
-                    <div className='drink-time-dropdown-option'
-                      onClick={() => handleOptionSelect('18시간 이상 24시간 미만')}>
+                    <div className='drink-time-dropdown-option' onClick={() => handleOptionSelect('18시간 이상 24시간 미만')}>
                       18시간 이상 24시간 미만
                     </div>
                   </div>
@@ -191,7 +198,6 @@ const DrinkCreate = () => {
               }
             </div>
 
-            {/* 날씨 */}
             <div className='weather-big-container'>
               <p>날씨</p>
               <div className={`weather-container ${selectedWeather === '좋음' ? 'selected' : ''}`} onClick={() => handleWeatherSelect('좋음')}>
@@ -208,7 +214,6 @@ const DrinkCreate = () => {
               </div>
             </div>
 
-            {/* 기분 */}
             <div className='mood-big-container'>
               <p>기분</p>
               <div className={`mood-container ${selectedMood === '좋음' ? 'selected' : ''}`} onClick={() => handleMoodSelect('좋음')}>
@@ -227,7 +232,6 @@ const DrinkCreate = () => {
           </div>
         </div>
 
-        {/* 음주 체크박스 */}
         <div className='drink-options-big-container'>
           <div className='drink-options-group'>
             {firstColumn.map((drink, index) => (

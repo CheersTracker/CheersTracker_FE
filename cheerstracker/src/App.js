@@ -15,14 +15,14 @@ function App() {
     <div className='main-container'>
       <SideBar/>
       {/* <DeleteAccount1/> */}
-      <DeleteAccount2/>
+      {/* <DeleteAccount2/> */}
       {/* <MyPage/> */}
       <Router>
         <Routes>
           <Route path="/" element={<NoDrinkCreate />} />
           <Route path="/detail" element={<NoDrinkDetail />} />
-          {/* <Route path="drink/" element={<DrinkCreate />} />
-          <Route path="drink/detail" element={<DrinkDetail />} /> */}
+          {/* <Route path="drink/" element={<DrinkCreate />} /> */}
+          {/* <Route path="/detail" element={<DrinkDetail />} /> */}
         </Routes>
       </Router>
 

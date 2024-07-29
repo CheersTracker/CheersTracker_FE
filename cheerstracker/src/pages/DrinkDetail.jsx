@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import '../assets/scss/drinkcreate.scss';
 import '../assets/scss/drinkdetail.scss';
 import Sun from '../assets/images/sun.svg';
@@ -14,10 +14,17 @@ import Makgeolli from '../assets/images/makgeolli.svg';
 import Soju from '../assets/images/soju.svg';
 import Whisky from '../assets/images/whisky.svg';
 import Wine from '../assets/images/wine.svg';
+import moment from 'moment';
 
 const DrinkDetail = () => {
+
   const location = useLocation();
   const data = location.state;
+  const navigate = useNavigate();
+
+  const handleEdit = () => {
+    navigate('/drink', { state: data });
+  };
 
   const allWeatherIcons = [
     { icon: Sun, type: '좋음' },
@@ -81,7 +88,7 @@ const DrinkDetail = () => {
       <div className='drink-create-top'>
         <h2>음주 기록</h2>
         <div className='btn-container'>
-          <button className='drink-create-delete-btn'>수정하기</button>
+          <button className='drink-create-delete-btn' onClick={handleEdit}>수정하기</button>
         </div>
       </div>
       <div className='drink-create-main-container'>
