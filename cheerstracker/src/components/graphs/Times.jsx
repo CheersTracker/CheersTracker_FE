@@ -1,10 +1,10 @@
 import React, { PureComponent } from 'react';
-import { BarChart, Bar, Rectangle, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { BarChart, Bar, Rectangle, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ReferenceLine } from 'recharts';
 
 const data = [
   {
     name: '2월',
-    num: 18,
+    num: 40,
   },
   {
     name: '3월',
@@ -12,19 +12,19 @@ const data = [
   },
   {
     name: '4월',
-    num: 10,
+    num: 30,
   },
   {
     name: '5월',
-    num: 12,
+    num: 40,
   },
   {
     name: '6월',
-    num: 8,
+    num: 45,
   },
   {
     name: '7월',
-    num: 14,
+    num: 35,
   },
 ];
 
@@ -33,24 +33,27 @@ export default class Example extends PureComponent {
 
   render() {
     return (
-      <ResponsiveContainer width="100%" height="100%">
+      <ResponsiveContainer width="90%" height="80%">
         <BarChart
-          width={500}
-          height={300}
+          width={0}
+          height={0}
           data={data}
           margin={{
-            top: 30,
-            right: 30,
-            left: 0,
-            bottom: 5,
+            top: 0,
+            right: 0,
+            left: 25,
+            bottom: 0,
           }}
         >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name"/>
-          <YAxis />
+          
+          <XAxis dataKey="name" stroke='#878787'/>
+          <YAxis 
+            domain={[0, 'dataMax + 4']}
+            ticks={[0, 10, 20, 30, 40, 50]} 
+            stroke='#878787'
+          />
           <Tooltip />
-          <Legend />
-          <Bar dataKey="num" fill="#BBCEFA" barSize={15} activeBar={<Rectangle fill="pink" stroke="blue" />} />
+          <Bar dataKey="num" fill="#BBCEFA" barSize={40} activeBar={<Rectangle fill="pink" stroke="blue" />} />
         </BarChart>
       </ResponsiveContainer>
     );

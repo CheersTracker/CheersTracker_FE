@@ -1,6 +1,7 @@
 import React from 'react'
 import Times from '../graphs/Times'
 import Clock from '../../assets/images/report/Clock.svg'
+import Circled from '../../assets/images/button/CircledInfo.svg'
 
 const Time = () => {
   return (
@@ -27,6 +28,11 @@ const Time = () => {
                 
             </div>
             <div className='time-graph'>
+                <div className='time-graph1'>
+                    <img src={Circled}></img>
+                    <div className='time-graph2'>최근 6개월과 비교해드려요</div>
+                </div>
+                <div className='time-graph-line'></div>
                 <Times />
             </div>
       </div>

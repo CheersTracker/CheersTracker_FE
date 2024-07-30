@@ -1,44 +1,32 @@
 import React from 'react';
-import { Bar } from 'react-chartjs-2';
-import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
 
-// Chart.js 등록
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+const DynamicWidthDiv = ({ value, maxValue }) => {
+  // 데이터 값에 따라 width를 계산
+  const width = `${(value / maxValue) * 100 + 300}px`;
 
-const data = {
-  labels: ['', ''], // 항목 레이블
-  datasets: [
-    {
-      label: '',
-      data: [6], // 첫 번째 데이터
-      backgroundColor: '#B4B4B4',
-    },
-    {
-      label: '',
-      data: [3], // 두 번째 데이터
-      backgroundColor: '#799AEA',
-    },
-  ],
-};
-
-const options = {
-  indexAxis: 'y', // 가로 막대 그래프 설정
-  scales: {
-    x: {
-      beginAtZero: true,
-    },
-    y: {
-        barThickness: 10,
-    },
-  },
-};
-
-const HorizontalBarChart = () => {
   return (
-    <div className='last-month-graph'>
-      <Bar data={data} options={options} />
+    <div style={{ display: 'flex', alignItems: 'center', marginLeft: '10px', marginTop: '36px', marginBottom: '2px' }}>
+      <div 
+        style={{ width, backgroundColor: 'color', height: '10px', transition: 'width 0.5s',
+                borderTopRightRadius: '5px', borderBottomRightRadius: '5px'}} />
+      <span style={{ marginLeft: '10px', color: 'black'}}>{value}g</span> 
     </div>
   );
 };
 
-export default HorizontalBarChart;
+const Example = () => {
+  // 지난달과 이번달 데이터 값
+  const lastMonthData = 670; // 지난달 
+  const thisMonthData = 470; // 이번달 
+  const maxValue = Math.max(lastMonthData, thisMonthData, 800); // 최대값을 설정
+
+  return (
+    <div>
+      <DynamicWidthDiv value={lastMonthData} maxValue={maxValue} color='#B4B4B4'/>
+      
+      <DynamicWidthDiv value={thisMonthData} maxValue={maxValue} color='#799AEA'/>
+    </div>
+  );
+};
+
+export default Example;

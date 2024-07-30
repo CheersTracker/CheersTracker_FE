@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { BarChart, Bar, Rectangle, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { BarChart, Bar, Rectangle, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ReferenceLine } from 'recharts';
 
 const data = [
   {
@@ -33,23 +33,28 @@ export default class Example extends PureComponent {
 
   render() {
     return (
-      <ResponsiveContainer width="100%" height="100%">
+      <ResponsiveContainer width="89%" height="80%">
         <BarChart
-          width={500}
-          height={300}
+          width={0}
+          height={0}
           data={data}
           margin={{
-            top: 30,
-            right: 30,
-            left: 0,
+            top: 5,
+            right: 0,
+            left: 25,
             bottom: 5,
           }}
         >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name"/>
-          <YAxis />
+          
+          <XAxis dataKey="name" stroke='#878787'/>
+          <YAxis 
+            domain={[0, 25]}
+            ticks={[0, 5, 10, 15, 20, 25]} // 5단위로 눈금 설정
+            stroke='#878787'
+          />
           <Tooltip />
-          <Legend />
+          <ReferenceLine y={4} stroke="#BBCEFA" strokeDasharray="3 3" /> 
+          <ReferenceLine y={8} stroke="#BBCEFA" strokeDasharray="3 3" /> 
           <Bar dataKey="num" fill="#BBCEFA" barSize={15} activeBar={<Rectangle fill="pink" stroke="blue" />} />
         </BarChart>
       </ResponsiveContainer>

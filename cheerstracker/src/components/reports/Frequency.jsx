@@ -2,6 +2,8 @@ import React from 'react'
 import Several from '../graphs/Several'
 import Amount from '../graphs/Amount'
 
+import Circled from '../../assets/images/button/CircledInfo.svg'
+
 // 음주 빈도 & 음주량
 
 const Frequency = () => {
@@ -16,7 +18,16 @@ const Frequency = () => {
                         </div>
                     </div>
                     <div className='fre-graph'>
-                        <Several />
+                        <div className='fre-graph1'>
+                            <img src={Circled}></img>
+                            <div className='fre-graph2'>최근 6개월과 비교해드려요</div>
+                        </div>
+                        <div className='fre-graph-line'></div>
+                        <div className='fre-graph3'>
+                            <Several /> 
+                            <div className='fre-graph4'>적정 음주빈도 <br></br>월 4~8회</div>
+                        </div>
+                        
                     </div>
             </div>
             <div className='drink-amount'>
@@ -28,7 +39,20 @@ const Frequency = () => {
                         </div>
                     </div>
                     <div className='amount-graph'>
-                        <Amount />
+                        <div className='amount-graph1'>
+                            <div className='amount-graph1-1'>청년(18~29세) 여성 기준</div>
+                            <div className='amount-graph1-2'>
+                                <img src={Circled}></img>
+                                <div className='amount-graph2'>최근 6개월과 비교해드려요</div>
+                            </div>
+                                
+                        </div>
+                        <div className='amount-graph-line'></div>
+                        <div className='amount-graph3'>
+                             <Amount />
+                             <div className='amount-graph4'>적정 알코올섭취량 <br></br>약 390g</div>
+                        </div>
+                        
                     </div>
             </div>
     </section>
