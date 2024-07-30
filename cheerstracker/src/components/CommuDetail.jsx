@@ -29,6 +29,7 @@ const CommuDetail = () => {
 
     const toggleComments = () => {
         setShowComments(!showComments);
+        setShowReComments(false);
     };
 
     const toggleLists = () => {

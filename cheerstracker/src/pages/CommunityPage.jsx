@@ -4,6 +4,7 @@ import '../assets/scss/search.scss'
 import '../assets/scss/community.scss'
 import WriteBtn from '../components/WriteBtn'
 import CommuList from '../components/CommuList'
+import SideBar from '../components/SideBar'
 
 const CommunityPage = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -15,6 +16,8 @@ const CommunityPage = () => {
   };
 
   return (
+    <div style={{display: 'flex'}}>
+    <SideBar />
     <div className='commupg_container'>
       <section className='commupg_header'>
         <div className="header_search_cate">
@@ -50,6 +53,7 @@ const CommunityPage = () => {
           <CommuList />
         </div>
       </section>
+    </div>
     </div>
   )
 }

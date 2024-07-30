@@ -6,20 +6,19 @@ body {
 }
 
 .postpg_container_all {
-    @include box(80%, 700px);
-    display: grid;
-    align-items: center;
+    @include box(90%, 100vh);
     position: absolute;
     top: 50%;
-    right: 4%;
+    right: 1.5%;
     transform: translateY(-50%);
 
     .postpg_sec1 {
-        @include box(95%, 50px);
+        @include box(95%, 10%);
         display: flex;
         justify-content: space-between;
         align-items: center;
         margin: 0 auto;
+        margin-top: 2%;
 
         >span {
             font-size: 2rem;
@@ -52,7 +51,7 @@ body {
     }
 
     .post_write {
-        @include box(93%, 450px);
+        @include box(93%, 88%);
         margin: 0 auto;
 
         .ql-toolbar {
@@ -64,17 +63,17 @@ body {
 
         .ql-container {
             border: none;
-            height: 410px;
+            height: 93%;
         }
 
         .ql-editor {
             border: none;
-            height: 420px;
+            height: 90%;
         }
     }
 
     .postpg_container {
-        @include box(95%, 580px);
+        @include box(95%, 80%);
         background-color: $color-white;
         margin: 0 auto;
         padding-top: 20px;
@@ -111,7 +110,7 @@ body {
             }
 
             .postpg_title {
-                @include box(98%, 30px);
+                @include box(100%, 40px);
                 border: 0.3px solid $color-postborder;
                 border-radius: 20px;
                 padding: 10px;

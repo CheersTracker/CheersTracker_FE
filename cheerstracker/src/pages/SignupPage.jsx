@@ -17,13 +17,15 @@ const SignupPage = () => {
 
     return (
         <div className='signuppg_container'>
-            <section className='signuppg_sec1'>
-                <img src={logo_mini} className='logo_mini' />
-            </section>
-            <section>
-                {currentStep === 1 && <Signup1 onNext={nextStep} />}
-                {currentStep === 2 && <Signup2 onPrev={prevStep} />}
-            </section>
+            <div style={{ width: '100%' }}>
+                <section className='signuppg_sec1'>
+                    <img src={logo_mini} className='logo_mini' />
+                </section>
+                <section>
+                    {currentStep === 1 && <Signup1 onNext={nextStep} />}
+                    {currentStep === 2 && <Signup2 onPrev={prevStep} />}
+                </section>
+            </div>
         </div>
     )
 }

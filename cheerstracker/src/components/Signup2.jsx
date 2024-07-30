@@ -18,14 +18,14 @@ const Signup2 = ({ onPrev }) => {
                     <p className='login_title'>회원가입</p>
                     <div></div>
                 </div>
-                <div className='login_id_container'>
+                <div className='login_id_container login_id_container2'>
                     <div className="label_container">
                         <p className='login_id_label'>닉네임을 입력하세요.</p>
                         <p className='label_alert'>* 닉네임은 추후 수정이 불가합니다.</p>
                     </div>
                     <input type="text" id='nickname' value={nickname} onChange={(e) => setNickname(e.target.value)} required />
                 </div>
-                <div className='login_id_container'>
+                <div className='login_id_container login_id_container2'>
                     <div className="label_container">
                         <p className='login_id_label'>성별을 선택하세요.</p>
                         <p className='label_alert'>* 성별은 추후 수정이 불가합니다.</p>
@@ -36,7 +36,7 @@ const Signup2 = ({ onPrev }) => {
                         <option value="female">여자</option>
                     </select>
                 </div>
-                <div className='login_id_container'>
+                <div className='login_id_container login_id_container2'>
                     <div className="label_container">
                         <p className='login_id_label'>생년월일을 입력하세요.</p>
                         <p className='label_alert'>* 생년월일은 추후 수정이 불가합니다.</p>

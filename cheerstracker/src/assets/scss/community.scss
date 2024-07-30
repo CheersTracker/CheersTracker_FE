@@ -35,7 +35,7 @@ body {
 }
 
 .community_list_container {
-    @include box(96%, 80px);
+    @include box(96%, 20%);
     border-radius: 15px;
     background-color: $color-white;
     box-shadow:
@@ -122,10 +122,11 @@ body {
 }
 
 .commupg_container {
-    @include box(100%, 700px);
+    @include box(100%, 100vh);
 
     .commupg_header {
         display: flex;
+        @include box(95%, 11%);
 
         .header_search_cate {
             @include box(100%, 80px);
@@ -161,10 +162,10 @@ body {
     }
 
     .commu_list_area {
-        @include box(83%, 94%);
+        @include box(95%, 85%);
         position: relative;
         top: 4%;
-        left: 13%;
+        left: 1%;
         overflow-y: scroll;
         overflow-x: hidden;
 

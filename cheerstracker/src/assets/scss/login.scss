@@ -59,7 +59,7 @@ p {
             }
 
             #id {
-                @include box(98%, 40px);
+                @include box(100%, 40px);
                 border-radius: 15px;
                 border: rgba(102, 102, 102, 0.35) 1px solid;
                 padding: 5px;
@@ -83,7 +83,7 @@ p {
             }
 
             #pw {
-                @include box(98%, 40px);
+                @include box(100%, 40px);
                 border-radius: 15px;
                 border: rgba(102, 102, 102, 0.35) 1px solid;
                 padding: 5px;
@@ -166,15 +166,18 @@ p {
             margin-bottom: 50px;
         }
 
+        .login_id_container2 {
+            margin-bottom: 46.5px;
+        }
+
         .login_button {
             margin-top: 10px;
         }
 
         .login_id_container {
-            height: 79px;
 
             .id_input_content {
-                @include box(100%, 55px);
+                @include box(100%, 40px);
                 position: relative;
 
                 .duplicate_btn {
@@ -184,8 +187,8 @@ p {
                     border: none;
                     color: $color-white;
                     position: absolute;
-                    top: 20%;
-                    right: 2%;
+                    top: 13%;
+                    right: 1%;
                 }
             }
 
@@ -202,7 +205,7 @@ p {
             }
 
             #nickname {
-                @include box(98%, 40px);
+                @include box(100%, 40px);
                 border-radius: 15px;
                 border: rgba(102, 102, 102, 0.35) 1px solid;
                 padding: 5px;
@@ -212,7 +215,7 @@ p {
                 @include box(100%, 40px);
 
                 #birthday {
-                    @include box(98%, 40px);
+                    @include box(100%, 40px);
                     border-radius: 15px;
                     border: rgba(102, 102, 102, 0.35) 1px solid;
                     padding: 5px;
@@ -248,7 +251,7 @@ p {
 
 .loginpg_container {
     display: flex;
-    @include box(100%, 700px);
+    @include box(100%, 100vh);
     align-items: center;
     justify-content: space-around;
     padding-top: 3%;
@@ -297,7 +300,7 @@ p {
         width: 40%;
 
         .signup_button {
-            @include box(87%, 80px);
+            @include box(80%, 80px);
             padding: 0;
             background-color: $color-nonbtn;
             border: none;
@@ -307,7 +310,7 @@ p {
             font-weight: 500;
             color: $color-white;
             margin-top: 30px;
-            margin-left: 7%;
+            margin-left: 10%;
 
             &:hover {
                 background-color: $color-btn;
@@ -317,18 +320,20 @@ p {
 }
 
 .signuppg_container {
-    @include box(100%, 778px);
+    @include box(100%, 100vh);
     background-image: url("../images/Logo/CheersTracker_logo_back.png");
     background-position: center;
     background-size: 1750px 1040px;
     background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     .signuppg_sec1 {
         @include box(100%, 70px);
         display: flex;
         justify-content: center;
         align-items: center;
-        padding-top: 1.5%;
 
         .logo_mini {
             @include box(50px, 40px);
@@ -337,14 +342,16 @@ p {
 }
 
 .repwpg_container {
-    @include box(100%, 778px);
+    @include box(100%, 100vh);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     .signuppg_sec1 {
         @include box(100%, 70px);
         display: flex;
         justify-content: center;
         align-items: center;
-        padding-top: 1.5%;
 
         .logo_mini {
             @include box(50px, 40px);

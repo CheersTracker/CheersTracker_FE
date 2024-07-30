@@ -2,7 +2,7 @@
 @import './setting/variables';
 
 .search_container {
-    @include box(35%, 30px);
+    @include box(35%, 40px);
     margin: 0 auto;
     position: relative;
     top: 20px;

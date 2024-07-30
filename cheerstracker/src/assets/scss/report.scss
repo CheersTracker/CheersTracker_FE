@@ -44,7 +44,7 @@
             display: flex;
             justify-content: space-between;
             align-items: end;
-            @include box(220px, 80px);
+            @include box(220px, 40px);
 
             .confirm-btn {
                 @include box(90px, 30px);
@@ -69,7 +69,7 @@
             display: flex;
             justify-content: center;
             align-items: end;
-            @include box(220px, 80px);
+            @include box(220px, 40px);
 
             .close-btn {
                 @include box(90px, 30px);
