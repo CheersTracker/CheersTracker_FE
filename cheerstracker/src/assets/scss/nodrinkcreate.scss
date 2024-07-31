@@ -139,8 +139,7 @@
     .drink-type-container {
         display: flex;
         justify-content: space-between;
-
-
+        gap: 3rem;
     }
 }
 
@@ -164,6 +163,7 @@
     .drink-option {
         width: 33%;
         display: flex;
+        justify-content: space-between;
 
         .drink-type-right{
             display: flex;
@@ -213,6 +213,7 @@
         .drink-type-left {
             display: flex;
             align-items: center;
+            position: relative;
             
             label {
                 display: flex;
@@ -234,6 +235,12 @@
             }
             p {
                 font-size: 1rem;
+            }
+            .drink-description {
+                position: absolute;
+                bottom: -9px;
+                width: 16rem;
+                font-size: 0.7rem;
             }
         }
 

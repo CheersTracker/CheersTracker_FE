@@ -167,6 +167,7 @@ const NoDrinkCreate = () => {
                 <label htmlFor={drink.type} className={`drink-type-name ${drink.isChecked ? 'checked' : 'unchecked'}`}>
                   {drink.type}
                   <p>{drink.description2}</p>
+                  <p className='drink-description'>{drink.description}</p>
                 </label>
               </div>
               <div className='drink-type-right'>
@@ -203,6 +204,7 @@ const NoDrinkCreate = () => {
                 <label htmlFor={drink.type} className={`drink-type-name ${drink.isChecked ? 'checked' : 'unchecked'}`}>
                   {drink.type}
                   <p>{drink.description2}</p>
+                  <p className='drink-description'>{drink.description}</p>
                 </label>
               </div>
               <div className='drink-type-right'>
@@ -239,6 +241,7 @@ const NoDrinkCreate = () => {
                 <label htmlFor={drink.type} className={`drink-type-name ${drink.isChecked ? 'checked' : 'unchecked'}`}>
                   {drink.type}
                   <p>{drink.description2}</p>
+                  <p className='drink-description'>{drink.description}</p>
                 </label>
               </div>
               <div className='drink-type-right'>
