@@ -53,8 +53,8 @@ export default class Example extends PureComponent {
             stroke='#878787'
           />
           <Tooltip />
-          <ReferenceLine y={4} stroke="#BBCEFA" strokeDasharray="3 3" /> 
-          <ReferenceLine y={8} stroke="#BBCEFA" strokeDasharray="3 3" /> 
+          <ReferenceLine y={4} stroke="#BBCEFA"  /> 
+          <ReferenceLine y={8} stroke="#BBCEFA" /> 
           <Bar dataKey="num" fill="#BBCEFA" barSize={15} activeBar={<Rectangle fill="pink" stroke="blue" />} />
         </BarChart>
       </ResponsiveContainer>

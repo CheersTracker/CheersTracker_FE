@@ -194,7 +194,7 @@ body {
                     .dateContainer {
                         display: grid;
                         grid-template-columns: repeat(7, 1fr);
-                        height: 823px;
+                        height: 809px;
                         font-size: 19.427px;
                         font-style: normal;
                         font-weight: 400;
@@ -210,7 +210,7 @@ body {
                             }
 
                             &.diffMonth {
-                                background-color: #EEEEEE;
+                                background-color: #fff;
                                 color: #B4B4B4;
                             }
                         }
