@@ -106,6 +106,14 @@
                     }
                 }
 
+                .view_item {
+                    align-items: end;
+                    height: 15px;
+                    .eye {
+                        height: 12px;
+                    }
+                }
+
                 .eye {
                     @include box(15px, 15px);
                 }

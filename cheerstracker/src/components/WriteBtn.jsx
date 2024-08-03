@@ -1,11 +1,14 @@
 import React from 'react'
 import { LuPencil } from "react-icons/lu";
+import { Link } from 'react-router-dom';
 
 const WriteBtn = () => {
   return (
-    <div className='write_btn'>
+    <Link to={'/post'}>
+      <div className='write_btn'>
         <LuPencil className='write_pen' />
-    </div>
+      </div>
+    </Link>
   )
 }
 

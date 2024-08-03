@@ -2,6 +2,7 @@ import React from 'react'
 import '../assets/scss/login.scss'
 import Login from '../components/Login'
 import logo from '../assets/images/Logo/CheersTracker_logo.png'
+import { Link } from 'react-router-dom'
 
 const LoginPage = () => {
     return (
@@ -19,7 +20,9 @@ const LoginPage = () => {
             </section>
             <section className='loginpg_login_zone'>
                 <Login />
-                <button type="button" className="signup_button">회원가입하기</button>
+                <Link to={'/signup'}>
+                    <button type="button" className="signup_button">회원가입하기</button>
+                </Link>
             </section>
         </div>
     )

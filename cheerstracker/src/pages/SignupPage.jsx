@@ -5,9 +5,13 @@ import Signup2 from '../components/Signup2';
 import logo_mini from '../assets/images/Logo/CheersTracker_logo_mini.png'
 
 const SignupPage = () => {
+    const [id, setId] = useState('');
+    const [password, setPassword] = useState('');
     const [currentStep, setCurrentStep] = useState(1);
 
-    const nextStep = () => {
+    const nextStep = ({ id, password }) => {
+        setId(id);
+        setPassword(password);
         setCurrentStep(2);
     };
 
@@ -23,7 +27,7 @@ const SignupPage = () => {
                 </section>
                 <section>
                     {currentStep === 1 && <Signup1 onNext={nextStep} />}
-                    {currentStep === 2 && <Signup2 onPrev={prevStep} />}
+                    {currentStep === 2 && <Signup2 onPrev={prevStep} id={id} password={password} />}
                 </section>
             </div>
         </div>

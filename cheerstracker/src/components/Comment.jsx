@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../assets/scss/comment.scss'
 import '../assets/scss/report.scss'
 import { GoPerson } from "react-icons/go";
@@ -7,11 +7,20 @@ import { LiaComment } from 'react-icons/lia'
 import { AiOutlineAlert } from "react-icons/ai";
 import ReportModal from './ReportModal';
 import ReportComModal from './ReportComModal';
+import axios from 'axios';
 
-const Comment = ({ onClick }) => {
+const Comment = ({ onClick, comment }) => {
   const [clickHeart, setClickHeart] = useState(false);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [showCompleteModal, setShowCompleteModal] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedContent, setEditedContent] = useState(comment.content);
+
+  useEffect(() => {
+    if (isEditing) {
+      setEditedContent(comment.content);
+    }
+  }, [isEditing, comment.content]);
 
   const handleReportClick = () => {
     setShowConfirmModal(true);
@@ -31,6 +40,39 @@ const Comment = ({ onClick }) => {
     setClickHeart(!clickHeart);
   };
 
+  const handleEditClick = () => {
+    setIsEditing(true);
+  };
+
+  const handleSaveClick = async () => {
+    try {
+      await axios.put(`/api/alcom/${id}/comments/${commentId}`, { content: newContent });
+      fetchCommentList();
+      setIsEditing(false);
+      alert('댓글이 성공적으로 수정되었습니다!');
+    } catch (error) {
+      console.error('Error updating comment:', error);
+      alert('댓글 수정에 실패했습니다.');
+    }
+  };
+
+  const deleteComment = async (commentId) => {
+    try {
+      await axios.delete(`/api/alcom/${id}/comments/${commentId}`);
+      fetchCommentList();
+      alert('댓글이 성공적으로 삭제되었습니다!');
+    } catch (error) {
+      console.error('Error deleting comment:', error);
+      alert('댓글 삭제에 실패했습니다.');
+    }
+  };
+
+  const handleDeleteClick = () => {
+    if (window.confirm('댓글을 정말 삭제하시겠습니까?')) {
+      deleteComment(comment.id);
+    }
+  };
+
   return (
     <div className='comment_container'>
       <ReportModal
@@ -47,20 +89,40 @@ const Comment = ({ onClick }) => {
         <div className="list_box">
           <div className="list_nick">
             <GoPerson /> &nbsp;
-            레몬나르고빚갚으리오
+            {comment.author}
           </div>
           <div className="box_time">3분전</div>
         </div>
         <p>
-          <span className='p1'>수정</span>
-          <span className='p2'>삭제</span>
-          <span className='p3' onClick={handleReportClick}>신고하기<AiOutlineAlert /></span>
+          {isEditing ? (
+            <>
+              <span className='p1' onClick={handleSaveClick}>저장</span>
+              <span className='p2' onClick={() => setIsEditing(false)}>취소</span>
+            </>
+          ) : (
+            <>
+              <span className='p1' onClick={handleEditClick}>수정</span>
+              <span className='p2' onClick={handleDeleteClick}>삭제</span>
+              <span className='p3' onClick={handleReportClick}>신고하기<AiOutlineAlert /></span>
+            </>
+          )}
         </p>
       </section>
       <section className='comment_sec2'>
-        <div className="detail_content">
-          저는 대학교  1, 2학년 때는 그랬던 것 같은데 건강도 건강이지만 아무리 알바해도 금세 통장이 텅텅 비어서 음주 습관을 바꿀 수 밖에 없더라고요. 지금까지 쭉 그렇게 해오셨는데 요즘 들어서 회복이 잘 안 되는 거면 이제는 줄이시는 게 맞는 것 같습니다. 여럿이서 만나는 것보다 둘이서 만나면 시간 조율이 쉬워서 낮에 만나기 좋아요.
-        </div>
+        {isEditing ? (
+          <div className="detail_content">
+            <input
+              type="text"
+              value={editedContent}
+              onChange={(e) => setEditedContent(e.target.value)}
+              placeholder="댓글을 수정하세요..."
+            />
+          </div>
+        ) : (
+          <div className="detail_content">
+            {comment.content}
+          </div>
+        )}
         <div className="box_content">
           <div className="content_item heart_item">
             {clickHeart ? (
