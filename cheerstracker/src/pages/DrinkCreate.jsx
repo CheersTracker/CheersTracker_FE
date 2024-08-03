@@ -17,6 +17,7 @@ import Makgeolli from '../assets/images/makgeolli.svg';
 import Soju from '../assets/images/soju.svg';
 import Whisky from '../assets/images/whisky.svg';
 import Wine from '../assets/images/wine.svg';
+import SideBar from '../components/SideBar'
 
 const DrinkCreate = () => {
   const navigate = useNavigate();
@@ -133,6 +134,8 @@ const DrinkCreate = () => {
   };
 
   return (
+    <div style={{display: 'flex'}}>
+      <SideBar/>
     <div className='drink-create-big-container'>
       <div className='drink-create-top'>
         <h2>음주 기록</h2>
@@ -326,6 +329,7 @@ const DrinkCreate = () => {
           />
         </div>
       </div>
+    </div>
     </div>
   );
 };

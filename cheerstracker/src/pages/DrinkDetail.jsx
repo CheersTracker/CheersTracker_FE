@@ -15,6 +15,7 @@ import Soju from '../assets/images/soju.svg';
 import Whisky from '../assets/images/whisky.svg';
 import Wine from '../assets/images/wine.svg';
 import moment from 'moment';
+import SideBar from '../components/SideBar'
 
 const DrinkDetail = () => {
 
@@ -84,6 +85,8 @@ const DrinkDetail = () => {
   });
 
   return (
+    <div style={{display: 'flex'}}>
+      <SideBar/>
     <div className='drink-create-big-container'>
       <div className='drink-create-top'>
         <h2>음주 기록</h2>
@@ -192,6 +195,7 @@ const DrinkDetail = () => {
         </div>
 
       </div>
+    </div>
     </div>
   );
 };

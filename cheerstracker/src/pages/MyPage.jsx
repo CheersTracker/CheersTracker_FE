@@ -3,10 +3,13 @@ import '../assets/scss/mypage.scss';
 import Comment from '../assets/images/comment.svg';
 import Mypost from '../assets/images/mypost.svg';
 import Heart from '../assets/images/heart.svg';
+import SideBar from '../components/SideBar'
 
 
 const MyPage = () => {
   return (
+    <div style={{display: 'flex'}}>
+      <SideBar/>
     <div className='mypage-main-container'>
       <h1>마이페이지</h1>
       <div className='mapage-account-container'>
@@ -39,6 +42,7 @@ const MyPage = () => {
       </div>
 
       <button className='delete-account-btn'>CheersTracker 탈퇴하기</button>
+    </div>
     </div>
   )
 }
