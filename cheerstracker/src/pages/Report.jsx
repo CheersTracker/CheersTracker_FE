@@ -6,7 +6,7 @@ import Frequency from '../components/reports/Frequency'
 import Time from '../components/reports/Time'
 import Mood from '../components/reports/Mood'
 import Style from '../components/reports/Style'
-import '../assets/scss/report.scss'
+import '../assets/scss/reports.scss'
 
 const Report = () => {
     const [view, setView] = useState(false);
