@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import '../assets/scss/login.scss'
 import logo_mini from '../assets/images/Logo/CheersTracker_logo_mini.png'
 import SideBar from '../components/SideBar';
+import axios from 'axios';
 
 const RePassword = () => {
     const [currentPassword, setCurrentPassword] = useState('');
@@ -13,6 +14,30 @@ const RePassword = () => {
         const value = e.target.value;
         setRePassword(value);
         setPasswordMatch(value === password);
+    };
+
+    const changePassword = async () => {
+        if (!passwordMatch || password.length === 0) {
+            alert('비밀번호가 일치하지 않거나 비밀번호가 비어 있습니다.');
+            return;
+        }
+
+        try {
+            const response = await axios.patch('/api/change-password', {
+                currentPassword,
+                newPassword: password,
+            });
+
+            if (response.status === 200) {
+                alert('비밀번호가 성공적으로 변경되었습니다.');
+                setCurrentPassword('');
+                setPassword('');
+                setRePassword('');
+            }
+        } catch (error) {
+            console.error('Error changing password:', error);
+            alert('비밀번호 변경에 실패했습니다. 현재 비밀번호를 확인하세요.');
+        }
     };
 
     return (
@@ -51,7 +76,7 @@ const RePassword = () => {
                                     <p className='pw_error_msg'>비밀번호를 다시 확인해주세요.</p>
                                 )}
                             </div>
-                            <button type="button" className="login_button">비밀번호 변경하기</button>
+                            <button type="button" className="login_button" onClick={changePassword}>비밀번호 변경하기</button>
                         </section>
                     </div>
                 </div>

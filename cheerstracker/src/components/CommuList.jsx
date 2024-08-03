@@ -4,7 +4,7 @@ import { AiOutlineEye } from "react-icons/ai";
 import { GoHeart, GoHeartFill } from "react-icons/go";
 import { LiaComment } from "react-icons/lia";
 
-const CommuList = () => {
+const CommuList = ({ post }) => {
     const [clickHeart, setClickHeart] = useState(false);
 
     const handleClickHeart = () => {
@@ -14,13 +14,13 @@ const CommuList = () => {
     return (
         <div className='community_list_container'>
             <section className='list_sec1'>
-                <div className='list_category'>음주</div>
-                <div className="list_title">이정도면 음주 습관 안 좋은 편인가요?</div>
+                <div className='list_category'>{ post.category }</div>
+                <div className="list_title">{ post.title }</div>
             </section>
             <section className='list_sec2'>
                 <div className="list_nick">
                     <GoPerson /> &nbsp;
-                    레몬나르고빚갚으리오
+                    { post.author }
                 </div>
                 <div className="list_box">
                     <div className="box_time">3분전</div>

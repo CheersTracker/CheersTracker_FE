@@ -12,9 +12,17 @@ const Signup1 = ({ onNext }) => {
         setPasswordMatch(value === password);
     };
 
+    const handleNext = () => {
+        if (passwordMatch) {
+            console.log(id);
+            console.log(password);
+            onNext({ id, password });
+        }
+    };
+
     return (
         <div className='signup_container'>
-            <section className='login_sec1'>
+            <form className='login_sec1'>
                 <div className="sec1_header">
                     <div style={{ width: "25px", height: "25px" }}></div>
                     <p className='login_title'>회원가입</p>
@@ -42,8 +50,8 @@ const Signup1 = ({ onNext }) => {
                         <p className='pw_error_msg'>비밀번호를 다시 확인해주세요.</p>
                     )}
                 </div>
-                <button type="button" className="login_button" onClick={onNext}>다음</button>
-            </section>
+                <button type="button" className="login_button" onClick={handleNext}>다음</button>
+            </form>
             <section className='login_sec2'>
                 <span>이미 계정이 있으신가요?</span>
                 <a href="#">로그인하기</a>
