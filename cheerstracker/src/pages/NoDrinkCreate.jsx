@@ -4,6 +4,7 @@ import '../assets/scss/nodrinkcreate.scss';
 import Calendar from 'react-calendar';
 import moment from 'moment';
 import DownChevron from '../assets/images/DownChevron.svg';
+import SideBar from '../components/SideBar'
 
 const NoDrinkCreate = () => {
   const [startDate, setStartDate] = useState(new Date());
@@ -80,10 +81,12 @@ const NoDrinkCreate = () => {
       goalMessage
     };
 
-    navigate('/detail', { state: data });
+    navigate('/sobriety/detail', { state: data });
   };
 
   return (
+    <div style={{display: 'flex'}}>
+      <SideBar/>
     <div className='nodrink-detail-big-container'>
       <div className='nodrink-detail-header'>
         <div>
@@ -277,6 +280,7 @@ const NoDrinkCreate = () => {
           />
         </div>
       </div>
+    </div>    
     </div>
   );
 }

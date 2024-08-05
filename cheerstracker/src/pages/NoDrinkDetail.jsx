@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import '../assets/scss/nodrinkdetail.scss';
+import SideBar from '../components/SideBar'
 
 const NoDrinkDetail = () => {
     const location = useLocation();
@@ -32,6 +33,8 @@ const NoDrinkDetail = () => {
     };
 
     return (
+        <div style={{display: 'flex'}}>
+          <SideBar/>
         <div className='nodrink-detail-big-container'>
             <div className='nodrink-detail-header'>
                 <div className='nodrink-detail-header-left'>
@@ -150,6 +153,7 @@ const NoDrinkDetail = () => {
                 </div>
             </div>
         </div>
+    </div>       
     </div>            
     );
 }
