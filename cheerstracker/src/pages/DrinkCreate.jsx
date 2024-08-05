@@ -17,6 +17,8 @@ import Makgeolli from '../assets/images/makgeolli.svg';
 import Soju from '../assets/images/soju.svg';
 import Whisky from '../assets/images/whisky.svg';
 import Wine from '../assets/images/wine.svg';
+import SideBar from '../components/SideBar'
+import axios from 'axios';
 
 const DrinkCreate = () => {
   const navigate = useNavigate();
@@ -120,7 +122,7 @@ const DrinkCreate = () => {
   const [memo, setMemo] = useState(data.memo || '');
 
   const handleSave = () => {
-    navigate('/detail', {
+    navigate('/drinking/detail', {
       state: {
         date: value,
         duration: selectedOption,
@@ -132,7 +134,27 @@ const DrinkCreate = () => {
     });
   };
 
+  // const handleSave = async () => {
+  //   try {
+  //     await axios.post('http://127.0.0.1:8000/drinking/records/', {
+  //       date: value,
+  //       duration: selectedOption,
+  //       weather: selectedWeather,
+  //       mood: selectedMood,
+  //       drinks: drinkOptions,
+  //       memo: memo,      
+  //     });
+  //     navigate('/detail');
+  
+  // }catch(error) {
+  //   console.log('음주 기록 페이지 에러: ',error);
+  // }
+  // };
+
+
   return (
+    <div style={{display: 'flex'}}>
+      <SideBar/>
     <div className='drink-create-big-container'>
       <div className='drink-create-top'>
         <h2>음주 기록</h2>
@@ -243,7 +265,7 @@ const DrinkCreate = () => {
                 />
                 <div className='drink-type'>
                   <p className={`drink-type-name ${drink.isChecked ? 'active' : ''}`}>{drink.type}
-                    <p className='drink-description'>{drink.description}</p>
+                    <span className='drink-description'>{drink.description}</span>
                   </p>
                   <p className={`drink-description2 ${drink.isChecked ? 'active' : ''}`}>{drink.description2}</p>
                 </div>
@@ -277,7 +299,7 @@ const DrinkCreate = () => {
                 />
                 <div className='drink-type'>
                   <p className={`drink-type-name ${drink.isChecked ? 'active' : ''}`}>{drink.type}
-                    <p className='drink-description'>{drink.description}</p>
+                    <span className='drink-description'>{drink.description}</span>
                   </p>
                   <p className={`drink-description2 ${drink.isChecked ? 'active' : ''}`}>{drink.description2}</p>
                 </div>
@@ -309,9 +331,9 @@ const DrinkCreate = () => {
             <p>단위 : 잔</p>
             <div>
               <p>1병 기준</p>
-              <p>
+              <span>
                 <p>맥주 </p> 2~3잔 <p>소주 </p> 7잔 <p>와인 </p> 5잔
-              </p>
+              </span>
             </div>
           </div>
         </div>
@@ -326,6 +348,7 @@ const DrinkCreate = () => {
           />
         </div>
       </div>
+    </div>
     </div>
   );
 };
