@@ -9,16 +9,23 @@ import axios from 'axios';
 
 const CommuDetailPage = () => {
   const commuDetailAPI = window.location.pathname;
-  const commentAPI = window.location.pathname;
   const navigate = useNavigate();
   const [commuDetail, setCommuDetail] = useState([]);
-  const [commentList, setCommentList] = useState([]);
-  const [newComment, setNewComment] = useState('');
+  const [nickname, setNickname] = useState('');
+  const [postid, setPostId] = useState(null);
+  // const currentUser = localStorage.getItem('username');
 
   const fetchPostsDetail = async () => {
     try {
       const response = await axios.get(`http://127.0.0.1:8000/${commuDetailAPI}/`);
-      setCommuDetail(response.data);
+      if (response.data) {
+        setCommuDetail(response.data);
+        setNickname(response.data.author.nickname);
+        setPostId(response.data.id);
+    } else {
+        console.error('No data found in response');
+    }
+      console.log("commuDetail", response.data)
     } catch (error) {
       console.error('Error fetching posts:', error);
     }
@@ -31,7 +38,12 @@ const CommuDetailPage = () => {
     }
   
     try {
-      await axios.delete(`http://127.0.0.1:8000/community/posts/${commuDetailAPI}/`);
+      const token = localStorage.getItem('token');
+      await axios.delete(`http://127.0.0.1:8000/${commuDetailAPI}/`, {
+        headers: {
+            'Authorization': `Token ${token}`,
+        },
+    });
       alert('글이 성공적으로 삭제되었습니다.');
       navigate('/community');
     } catch (error) {
@@ -40,34 +52,8 @@ const CommuDetailPage = () => {
     }
   };
 
-  const addComment = async () => {
-    if (!newComment) {
-      alert('댓글을 입력해주세요.');
-      return;
-    }
-
-    try {
-      const response = await axios.post(`http://127.0.0.1:8000/community/posts/${commuDetailAPI}/comments`, { text: newComment });
-      setCommentList([...commentList, response.data]);
-      setNewComment('');
-    } catch (error) {
-      console.error('Error adding comment:', error);
-      alert('댓글 작성에 실패했습니다.');
-    }
-  };
-
-  const fetchCommentList = async () => {
-    try {
-      const response = await axios.get(`http://127.0.0.1:8000/community/posts/$${commuDetailAPI}/comments/${commentAPI}`);
-      setCommentList(response.data);
-    } catch (error) {
-      console.error('Error fetching posts:', error);
-    }
-  };
-
   useEffect(() => {
     fetchPostsDetail();
-    fetchCommentList();
   }, []);
 
 
@@ -82,7 +68,7 @@ const CommuDetailPage = () => {
         <WriteBtn />
       </section>
       <section className="commu_list_area">
-        <CommuDetail commuDetail={commuDetail} commentList={commentList} deletePost={deletePost} addComment={addComment} />
+        <CommuDetail commuDetail={commuDetail} deletePost={deletePost} nickname={nickname} postid={postid} />
       </section>
     </div>
     </div>

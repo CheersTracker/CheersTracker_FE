@@ -1,22 +1,24 @@
-import React, { useRef, useCallback, useMemo, useEffect } from 'react';
-import ReactDOM from 'react-dom'; 
+import React, { useRef, useCallback, useMemo, useEffect, useState } from 'react';
+import ReactDOM from 'react-dom';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import '../assets/scss/post.scss';
 import { TbPaperclip } from "react-icons/tb";
 
-const Post = ({ content, setContent, setImages }) => {
+const Post = ({ content, isEditing, setContent, setImages }) => {
     const quillRef = useRef(null);
+    const [editorContent, setEditorContent] = useState(content);
 
     const handleTextChange = useCallback((value) => {
         setContent(value);
+        setEditorContent(value);
     }, [setContent]);
 
     const imageHandler = useCallback(() => {
         const input = document.createElement('input');
         input.setAttribute('type', 'file');
         input.setAttribute('accept', 'image/*');
-        input.onchange = async () => {
+        input.onchange = () => {
             const file = input.files[0];
             if (file) {
                 const reader = new FileReader();
@@ -45,7 +47,7 @@ const Post = ({ content, setContent, setImages }) => {
         input.onchange = () => {
             const file = input.files[0];
             if (file) {
-                console.log('파일 선택:', file);
+                console.log('File selected:', file);
             }
         };
         input.click();
@@ -66,11 +68,11 @@ const Post = ({ content, setContent, setImages }) => {
         },
     }), [imageHandler, fileHandler]);
 
-    const addCustomButton = () => {
+    const addCustomButton = useCallback(() => {
         const toolbar = quillRef.current.getEditor().getModule('toolbar');
         const button = toolbar.container.querySelector('.ql-file');
 
-        button.innerHTML = ''; 
+        button.innerHTML = '';
 
         const icon = document.createElement('span');
         icon.style.display = 'flex';
@@ -81,21 +83,28 @@ const Post = ({ content, setContent, setImages }) => {
         
         button.appendChild(icon);
         button.onclick = fileHandler;
-    };
+    }, [fileHandler]);
 
     useEffect(() => {
         if (quillRef.current) {
             addCustomButton();
         }
-    }, []);
+    }, [addCustomButton]);
 
+    useEffect(() => {
+        if (isEditing) {
+            setEditorContent(content);
+        } else {
+            setEditorContent('');
+        }
+    }, [isEditing, content]);
 
     return (
         <ReactQuill
             className='post_write'
             ref={quillRef}
-            value={content}
             modules={modules}
+            value={editorContent}
             onChange={handleTextChange}
             theme="snow"
         />

@@ -48,8 +48,7 @@ body {
     justify-content: space-between;
 
     .list_sec1 {
-        @include box(70%, 100%);
-        border-right: 1px solid $color-toolbar;
+        @include box(60%, 100%);
         display: grid;
 
         .list_category {
@@ -67,6 +66,8 @@ body {
     .list_sec2 {
         @include box(28%, 100%);
         display: grid;
+        padding-left: 2%;
+        border-left: 1px solid $color-toolbar;
 
         .list_nick {
             display: flex;

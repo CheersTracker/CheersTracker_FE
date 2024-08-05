@@ -23,9 +23,14 @@ const RePassword = () => {
         }
 
         try {
-            const response = await axios.patch('/api/change-password', {
-                currentPassword,
-                newPassword: password,
+            const token = localStorage.getItem('token');
+            const response = await axios.patch('http://127.0.0.1:8000/user/account/change-password/', {
+                old_password: currentPassword,
+                new_password: password,
+            }, {
+                headers: {
+                    'Authorization': `Token ${token}`,
+                },
             });
 
             if (response.status === 200) {
@@ -35,8 +40,8 @@ const RePassword = () => {
                 setRePassword('');
             }
         } catch (error) {
-            console.error('Error changing password:', error);
-            alert('비밀번호 변경에 실패했습니다. 현재 비밀번호를 확인하세요.');
+            console.error('Error changing password:', JSON.stringify(error.response.data));
+            alert('비밀번호 변경에 실패했습니다. 현재 비밀번호나 비밀번호 조건을 확인하세요.');
         }
     };
 

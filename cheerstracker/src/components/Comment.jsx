@@ -9,7 +9,9 @@ import ReportModal from './ReportModal';
 import ReportComModal from './ReportComModal';
 import axios from 'axios';
 
-const Comment = ({ onClick, comment }) => {
+const Comment = ({ onClick, comment, fetchCommentList, reCommentLength }) => {
+  const commuAPI = window.location.pathname.split('/').filter(segment => segment !== '').pop();
+  const commuAPIInt = parseInt(commuAPI, 10);
   const [clickHeart, setClickHeart] = useState(false);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [showCompleteModal, setShowCompleteModal] = useState(false);
@@ -46,19 +48,32 @@ const Comment = ({ onClick, comment }) => {
 
   const handleSaveClick = async () => {
     try {
-      await axios.put(`/api/alcom/${id}/comments/${commentId}`, { content: newContent });
+      const token = localStorage.getItem('token');
+      await axios.put(`http://127.0.0.1:8000/community/comments/${comment.id}/`, {
+        post: commuAPIInt,
+        content: editedContent
+      }, {
+        headers: {
+          'Authorization': `Token ${token}`,
+        },
+      });
       fetchCommentList();
       setIsEditing(false);
       alert('댓글이 성공적으로 수정되었습니다!');
     } catch (error) {
-      console.error('Error updating comment:', error);
+      console.error('Error updating comment:', JSON.stringify(error.response.data));
       alert('댓글 수정에 실패했습니다.');
     }
   };
 
-  const deleteComment = async (commentId) => {
+  const deleteComment = async () => {
     try {
-      await axios.delete(`/api/alcom/${id}/comments/${commentId}`);
+      const token = localStorage.getItem('token');
+      await axios.delete(`http://127.0.0.1:8000/community/comments/${comment.id}/`, {
+        headers: {
+          'Authorization': `Token ${token}`,
+        },
+      });
       fetchCommentList();
       alert('댓글이 성공적으로 삭제되었습니다!');
     } catch (error) {
@@ -89,7 +104,7 @@ const Comment = ({ onClick, comment }) => {
         <div className="list_box">
           <div className="list_nick">
             <GoPerson /> &nbsp;
-            {comment.author}
+            {comment.author.nickname}
           </div>
           <div className="box_time">3분전</div>
         </div>
@@ -134,7 +149,7 @@ const Comment = ({ onClick, comment }) => {
           </div>
           <div className="content_item comment_item">
             <LiaComment className='comment' onClick={onClick} />
-            <span>4</span>
+            <span>{ reCommentLength }</span>
           </div>
         </div>
       </section>
