@@ -8,22 +8,31 @@ import axios from 'axios';
 
 const MyPage = () => {
 
-  // 인증된 사용자인지에 대한 조건 추가해야 됨
   const [id,setId] = useState('');
+
   const getId = async () => {
     try {
-      const response = await axios.get(`http://127.0.0.1:8000/user/account/`);
-      setId(response.data.id);
-      console.log(response.data);
+        const token = localStorage.getItem('token');
+        const response = await axios.get('http://localhost:8000/user/account/', {
+            headers: {
+                'Authorization': `Token ${token}`,
+            },
+        });
+        
+        if (response.data) {
+            setId(response.data[0].username);
+            console.log(response.data[0]);
+        }
     } catch (error) {
-      console.log('오류 발생: ' + error.message);
+        console.log('오류 발생: ' + error.message);
     }
-  };
+};
+
 
   useEffect(() => {
     getId();
   }, []);
-
+ 
   return (
     <div style={{ display: 'flex' }}>
       <SideBar />
