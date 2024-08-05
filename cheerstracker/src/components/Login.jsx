@@ -15,6 +15,11 @@ const Login = () => {
                 username: id,
                 password,
             });
+            console.log(response.data);
+
+            const { token } = response.data;
+            localStorage.setItem('token', token);
+            // localStorage.setItem('username', id);
             alert('로그인 성공');
             navigate('/community');
             setId('');
@@ -25,6 +30,12 @@ const Login = () => {
             setPassword('');
         }
     };
+
+    // const handleKakao = async () => {
+    //     try {
+    //         const response = await axios.post('http://127.0.0.1:8000/user/kakao/', )
+    //     }
+    // }
 
     return (
         <div className='login_container'>
