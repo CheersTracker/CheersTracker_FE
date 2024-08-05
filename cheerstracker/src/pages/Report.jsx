@@ -7,6 +7,7 @@ import Time from '../components/reports/Time'
 import Mood from '../components/reports/Mood'
 import Style from '../components/reports/Style'
 import '../assets/scss/reports.scss'
+import '../assets/scss/sidebar.scss'
 
 const Report = () => {
     const [view, setView] = useState(false);
