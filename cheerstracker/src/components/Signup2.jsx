@@ -36,7 +36,7 @@ const Signup2 = ({ onPrev, id, password }) => {
 
             const response = await axios.post('http://127.0.0.1:8000/user/join/', dataToSend);
             alert('회원가입 성공');
-            navigate('/');
+            navigate('/login');
 
         } catch (error) {
             alert('회원가입 실패:' + error);
@@ -89,7 +89,7 @@ const Signup2 = ({ onPrev, id, password }) => {
             </form>
             <section className='login_sec2'>
                 <span>이미 계정이 있으신가요?</span>
-                <a href="#">로그인하기</a>
+                <a href="/login">로그인하기</a>
             </section>
         </div>
     )
