@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../assets/scss/nodrinkcreate.scss';
 import Calendar from 'react-calendar';
 import moment from 'moment';
 import DownChevron from '../assets/images/DownChevron.svg';
 import SideBar from '../components/SideBar'
+import axios from 'axios';
 
 const NoDrinkCreate = () => {
   const [startDate, setStartDate] = useState(new Date());
@@ -73,16 +74,66 @@ const NoDrinkCreate = () => {
     );
   };
 
-  const handleSubmit = () => {
-    const data = {
-      startDate,
-      endDate,
-      averageCost,
-      goalMessage
-    };
 
-    navigate('/sobriety/detail', { state: data });
-  };
+
+  // 유저 이름 불러오기
+  const [currentId, setCurrentId] = useState(null);
+
+  const CurrentUser = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        const response = await axios.get('http://127.0.0.1:8000/user/current/', {
+          headers: {
+            'Authorization': `Token ${token}`,
+          },
+        });
+        setCurrentId(response.data.id);
+      } catch (error) {
+      //   console.error('user:', error);
+      }
+    }
+
+    useEffect(() => {
+      CurrentUser();
+    },[])
+
+    const handleSubmit = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        
+        if (!token) {
+          alert('토큰이 없습니다.');
+          return;
+        }
+        
+        const requestData = {
+          user: currentId,
+          start_date: moment(startDate).format('YYYY-MM-DD'),
+          end_date: moment(endDate).format('YYYY-MM-DD'),
+          average_consumption: averageCost,
+          sobriety_goal: goalMessage,
+        };
+        console.log('금주 기록 저장 시도:', requestData);
+    
+        const response = await axios.post('http://127.0.0.1:8000/sobriety/records/', requestData, {
+          headers: {
+            'Authorization': `Token ${token}`,
+            'Content-Type': 'application/json',
+          },
+        });
+    
+        console.log('금주 기록 저장 성공:', response.data);
+        navigate('/sobriety/detail');
+      } catch (error) {
+        console.error('금주 기록 페이지 에러:', error);
+        if (error.response) {
+          alert(`오류 발생: ${JSON.stringify(error.response.data)}`);
+        } else {
+          alert('서버와의 연결에 문제가 있습니다.');
+        }
+      }
+    };
+    
 
   return (
     <div style={{display: 'flex'}}>
@@ -105,7 +156,7 @@ const NoDrinkCreate = () => {
             <p>시작</p>
             <div className='calendar-big-container'>
               <div className='calendar-toggle-container' onClick={toggleStartCalendar}>
-                {moment(startDate).format('YYYY.MM.DD.')}
+                {moment(startDate).format('YYYY-MM-DD')}
                 <img src={DownChevron} alt="드롭다운 아이콘" />
                 {isStartCalendarOpen && (
                   <Calendar
@@ -121,7 +172,7 @@ const NoDrinkCreate = () => {
             <p>종료</p>
             <div className='calendar-big-container'>
               <div className='calendar-toggle-container' onClick={toggleEndCalendar}>
-                {moment(endDate).format('YYYY.MM.DD.')}
+                {moment(endDate).format('YYYY-MM-DD')}
                 <img src={DownChevron} alt="드롭다운 아이콘" />
                 {isEndCalendarOpen && (
                   <Calendar
