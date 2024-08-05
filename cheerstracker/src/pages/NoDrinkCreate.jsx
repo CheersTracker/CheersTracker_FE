@@ -81,7 +81,7 @@ const NoDrinkCreate = () => {
       goalMessage
     };
 
-    navigate('/detail', { state: data });
+    navigate('/sobriety/detail', { state: data });
   };
 
   return (

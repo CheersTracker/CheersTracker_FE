@@ -24,7 +24,7 @@ const DrinkDetail = () => {
   const navigate = useNavigate();
 
   const handleEdit = () => {
-    navigate('/drink', { state: data });
+    navigate('/drinking', { state: data });
   };
 
   const allWeatherIcons = [
