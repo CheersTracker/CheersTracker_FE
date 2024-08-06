@@ -41,12 +41,13 @@ const Report = () => {
             if (!token) {
                 throw new Error("no token")
             }
-            const response = await axios.get(`${BASE_URL}sobriety/set_average_consumption/`, {
+            const response = await axios.get(`${BASE_URL}/drinking/analysis`, {
         headers: {
             'Authorization': `Token ${token}`,
             },
         } );
-        console.log("API Response",response.data);
+        console.log("API Response!!!!!!!!!!!!!! :",response.data);
+
         setData(response.data);
         } catch(e) {
             console.error(e);
@@ -79,10 +80,11 @@ const Report = () => {
                     <div className='report-box-line'></div>
                     <div className='report-box1'>
                         <div className='report-wrap'>
-                            <MonthSummary />
+                            <MonthSummary data={data.monthly_analysis}/>
+
                             <Frequency />
-                            <Time />
-                            <Mood />
+                            <Time monthly_analysis={data.monthly_analysis} />
+                            <Mood monthly_mood={data.monthly_analysis} monthly_weather={data.monthly_analysis}/>
                             <Style />
                         </div>
                     </div>
