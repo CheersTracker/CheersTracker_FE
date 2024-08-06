@@ -19,23 +19,34 @@ const Login = () => {
 
             const { token } = response.data;
             localStorage.setItem('token', token);
-            // localStorage.setItem('username', id);
+            localStorage.setItem('username', id);
             alert('로그인 성공');
-            navigate('/community');
+            navigate('/');
             setId('');
             setPassword('');
         } catch (error) {
-            alert('로그인 실패:' + error);
+            alert('로그인 실패');
+            console.log('로그인 실패', JSON.stringify(error.response.data))
             setId('');
             setPassword('');
         }
     };
 
-    // const handleKakao = async () => {
-    //     try {
-    //         const response = await axios.post('http://127.0.0.1:8000/user/kakao/', )
-    //     }
-    // }
+    const handleKakao = async () => {
+        try {
+            window.location.href = 'http://127.0.0.1:8000/accounts/kakao/login/';
+        } catch (error) {
+            alert('로그인 실패:', JSON.stringify(error.response.data));
+        }
+    }
+
+    const handleGoogle = async () => {
+        try {
+            window.location.href = 'http://127.0.0.1:8000/accounts/google/login/';
+        } catch (error) {
+            alert('로그인 실패:', JSON.stringify(error.response.data));
+        }
+    };
 
     return (
         <div className='login_container'>
@@ -59,8 +70,8 @@ const Login = () => {
                 <hr className="custom-hr" />
             </section>
             <section className="login_social">
-                <img src={kakao} className="login_kakao" />
-                <img src={google} className="login_google" />
+                <img src={kakao} className="login_kakao" onClick={handleKakao} />
+                <img src={google} className="login_google" onClick={handleGoogle} />
             </section>
         </div >
     )
