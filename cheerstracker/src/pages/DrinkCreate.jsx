@@ -144,7 +144,7 @@ const DrinkCreate = () => {
   //       drinks: drinkOptions,
   //       memo: memo,      
   //     });
-  //     navigate('/detail');
+  //     navigate('/drinking/detail');
   
   // }catch(error) {
   //   console.log('음주 기록 페이지 에러: ',error);
