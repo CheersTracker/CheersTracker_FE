@@ -34,7 +34,7 @@ const Signup2 = ({ onPrev, id, password }) => {
             };
             console.log('dataToSend:', dataToSend);
 
-            const response = await axios.post('http://127.0.0.1:8000/user/join/', dataToSend);
+            const response = await axios.post('http://127.0.0.1:8000/join/', dataToSend);
             alert('회원가입 성공');
             navigate('/login');
 

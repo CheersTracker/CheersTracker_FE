@@ -1,14 +1,11 @@
 import React, { useState } from 'react'
 import '../assets/scss/comment.scss'
 import { GoPerson } from "react-icons/go";
-import { GoHeart, GoHeartFill } from 'react-icons/go'
-import { LiaComment } from 'react-icons/lia'
 import { AiOutlineAlert } from "react-icons/ai";
 import ReportModal from './ReportModal';
 import ReportComModal from './ReportComModal';
 
 const ReComment = ({recomment}) => {
-    const [clickHeart, setClickHeart] = useState(false);
     const [showConfirmModal, setShowConfirmModal] = useState(false);
     const [showCompleteModal, setShowCompleteModal] = useState(false);
 
@@ -24,10 +21,6 @@ const ReComment = ({recomment}) => {
     const handleConfirm = () => {
         setShowConfirmModal(false);
         setShowCompleteModal(true);
-    };
-
-    const handleClickHeart = () => {
-        setClickHeart(!clickHeart);
     };
 
     return (
