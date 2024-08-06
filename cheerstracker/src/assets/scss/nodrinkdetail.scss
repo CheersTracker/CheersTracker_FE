@@ -22,53 +22,74 @@
     .nodrink-detail-header-left {
         font-size: 2rem;
         font-weight: 500;
+        width: 100%;
         >div {
             display: flex;
             align-items: center;
+            justify-content: space-between;
+            width: 100%;
+
+            >div {
+                display: flex;
+                font-weight: 500;
+            }
         }
     }
-    .nodrink-detail-header-right {
+}
+.nodrink-detail-header-right {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+
+    >div:nth-child(1) {
+        font-weight: 500;
         display: flex;
-        flex-direction: column;
+        font-size: 2rem;
 
-        >div:nth-child(1) {
-            font-weight: 500;
-            display: flex;
-            justify-content: flex-end;
-            font-size: 2rem;
+        p {
+            font-weight: 900;
+            color: #88D061;
 
-            p {
-                font-weight: 900;
-                color: #88D061;
-
-            }
         }
+    }
+    >div:nth-child(2) {
+        width: 40rem;
+        height: 3rem;
+        background-color: rgba(226, 238, 231, 1);
+        border-radius: 30px;
+        position: relative;
 
-        >div:nth-child(2) {
-            text-align: left;
-            font-size: 1.6rem;
-            display: flex;
-            
-            >p:nth-child(1) {
-                font-weight: 600;
-                margin-left: 0.5rem;              
+        >img {
+            position: absolute;
+            right: 5rem;
+            bottom: -1rem;
+        }
+    }
+    >div:nth-child(3) {
+        text-align: left;
+        font-size: 1.6rem;
+        display: flex;
+        
+        >p:nth-child(1) {
+            font-weight: 600;
+            margin-left: 0.5rem;              
 
-            }
-            
-            >p:nth-child(2) {
+        }
+        
+        >p:nth-child(2) {
 
-                font-weight: 700;
-                color: #BBCEFA;
-                margin: 0 0.5rem;
-            }
+            font-weight: 700;
+            color: #BBCEFA;
+            margin: 0 0.5rem;
         }
     }
 }
 .nodrink-detail-content-container{
     display: flex;
     flex-direction: column;
-    height: calc(100% - 2rem - 78px);
-    justify-content: space-around;
+    height: calc(100% - 3rem - 78px);
+    justify-content: space-evenly;
     gap: 1rem;
 
     >div:nth-child(3),
@@ -168,23 +189,6 @@
 
 }
 
-.nodrink-detail-memo {
-    >div {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 1rem;
-    }
-    button {
-        text-decoration: underline;
-        color: rgba(121, 154, 234, 1);
-        text-underline-offset: 2px;
-        margin-left: 0.5rem;
-    }
-    .btn-gray {
-        color: rgba(180, 180, 180, 1);
-
-    }
-}
 .toggleSwitch {
     width: 100px;
     height: 50px;
@@ -249,4 +253,8 @@
 
 #toggle:checked + .toggleSwitch .private {
     display: block;
+}
+.logo-img {
+    width: 40%;
+    margin: 0 auto;
 }
