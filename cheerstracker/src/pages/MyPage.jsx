@@ -20,8 +20,8 @@ const MyPage = () => {
         });
         
         if (response.data) {
-            setId(response.data[0].username);
-            console.log(response.data[0]);
+          console.log('리스폰스 데이터:',response.data);
+            setId(response.data.username);
         }
     } catch (error) {
         console.log('오류 발생: ' + error.message);
