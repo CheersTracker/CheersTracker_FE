@@ -30,68 +30,58 @@
     padding: 0;
 }
 
-body {
-    .wrap {
+.report-wrap {
         background-color: #F8FFFB;
-        width: 1920px;
-        height: 1080px;
         display: flex;
         margin: 0;
-        margin-right: 0;
         padding: 0;
 
-            // //임시 사이드바 (작업 완료 후 삭제)
-            // .sidebar-delete {
-            //     width: 104px;
-            //     height: 1080px;
-            //     background-color: white;
-            // }
-
-            section {
-                width: 1816px;
-                height: 1080px;
+            .report-section {
+                width: 100%;
+                height: 100%;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
                 
 
-                    .header {
+                    .report-header {
                         display: flex;
                         width: 100%;
-                        height: 169px;
+                        height: 20%;
                         margin: 0;
+                        margin-bottom: 1%;
                         
-                            .header1 {
+                            .report-header1 {
                                 font-size: 48px;
                                 font-weight: 500;
                                 font-style: normal;
-                                margin-top: 81px;
-                                margin-left: 85px;
-                                margin-right: 33px;
+                                margin-top: 6%;
+                                margin-left: 6%;
+                                margin-right: 3%;
                             }
-                            .header2{
+                            .report-header2{
                                 font-size: 25px;
                                 font-weight: 400;
-                                margin-top: 104.14px;
+                                margin-top: 7%;
                             }
                     }
 
                     .report-box {
-                        width: 1642px;
-                        height: 865px;
+                        width: 90%;
+                        height: 90%;
                         background-color:white;
                         border-radius: 19.004px;
                         box-shadow: 0px 16px 24px 0px rgba(0, 0, 0, 0.07), 2px 2px 6px 0px rgba(0, 0, 0, 0.10), -3px 0px 5px 0px rgba(0, 0, 0, 0.10);
                         margin-bottom: 46px;
                         margin: 0;
 
-                            .month {
+                            .report-month {
                                 display: flex;
-                                width: 1642px;
-                                height: 112px;
+                                width: 90%;
+                                height: 90%;
                 
-                                    .month1 {
+                                    .report-month1 {
                                         font-size: 33px;
                                         font-weight: 700;
                                         font-style: normal;
@@ -99,17 +89,18 @@ body {
                                         margin-left: 49px;
                                         margin-right: 54px;
                                     }
-                                    .month2 {
-                                        width: 141px;
-                                        height: 63px;
+                                    .report-month2 {
+                                        width: 12%;
+                                        height: 7%;
                                         border-radius: 20.96px;
                                         background: #F6F6F6;
-                                        margin-top: 26px;
+                                        margin-top: 2%;
+                                        margin-bottom: 1%;
                                         font-size: 24.808px;
                                         font-style: normal;
                                         font-weight: 400;
-                                        padding: 15px;
-                                        padding-left: 65px;
+                                        padding: 1.5%;
+                                        padding-left: 5.5%;
                                         position: relative;
                                     }
                                     .dropdown {
@@ -121,7 +112,7 @@ body {
                                         flex-direction: column;
                                         align-items: center;
                                         position: absolute;
-                                        margin-top: 78px;
+                                        margin-top: 50px;
                                         margin-left: 226px;
                                     }
                                     .dropdown li {
@@ -131,69 +122,71 @@ body {
                                     }
                             }
                             .report-box-line {
-                                width: 1556px;
+                                width: 95%;
                                 height: 1px;
                                 background-color: #cdcdcd;
                                 margin-left: 40px;
                             }
 
                             .report-box1 {
-                                width: 1642px;
-                                max-height: 709px;
+                                width: 100%;
+                                max-height: 630px;
                                 overflow-y: auto;
                                 .report-wrap {
                                     width: 100%;
-                                    height: 1750px;
+                                    height: 90%;
                                     display: flex;
                                     flex-direction: column;
+                                    justify-content: center;
+                                    background-color: #fff;
                                     .month-summary {
                                         width: 100%;
-                                        height: 313px;
+                                        height: 30%;
                                         margin: 0;
                                             p {
-                                                font-size: 33.905px;
+                                                font-size: 2em;
                                                 font-style: normal;
                                                 font-weight: 500;
                                                 line-height: normal;
-                                                width: 1556px;
-                                                margin-top: 27px;
-                                                margin-bottom: 16px;
+                                                width: 100%;
+                                                margin-top: 2%;
+                                                margin-bottom: 2%;
+                                                margin-left: 2%;
                                             }
                                             //이번 달 요약 리포트
                                             .summary-box {
-                                                width: 1556px;
-                                                height: 230px;
+                                                width: 95%;
+                                                height: 20%;
                                                 background-color: #ECF2FF;
                                                 border-radius: 19.004px;
                                                 box-shadow: 0px 16px 24px 0px rgba(0, 0, 0, 0.07), 2px 2px 6px 0px rgba(0, 0, 0, 0.10), -3px 0px 5px 0px rgba(0, 0, 0, 0.10);
                                                 display: flex;
                                                 align-items: center;
-    
+                                                justify-content: center;
+                                                margin-left: 2%;
                                                     .number {
-                                                        width: 183px;
+                                                        width: 11%;
                                                         height: 100%;
-                                                        margin-top: 45px;
-                                                        margin-left: 48px;
+                                                        margin-left: 3%;
                                                             .number1 {
-                                                                font-size: 52.976px;
+                                                                font-size: 3em;
                                                                 font-style: normal;
                                                                 font-weight: 600;
                                                             }
                                                             .number2 {
-                                                                font-size: 17.631px;
+                                                                font-size: 0.9em;
                                                                 font-style: normal;
                                                                 font-weight: 300;
                                                             }
                                                     }
                                                     //주종별 요약 분석
                                                     .alcohol-type {
-                                                        width: 773px;
-                                                        height: 188px;
+                                                        width: 70%;
+                                                        height: 5%;
                                                         display: flex;
-                                                        
     
                                                             .alcohol-type1 {
-                                                                width: 386.5px;
+                                                                width: 100%;
                                                                 height: 100%;
                                                                 img {
                                                                     width: 54.06px;
@@ -201,7 +194,7 @@ body {
                                                                 }
                                                             }
                                                             .alcohol-type2 {
-                                                                width: 386.5px;
+                                                                width: 100%;
                                                                 height: 100%;
                                                                 img {
                                                                     width: 54.06px;
@@ -210,62 +203,62 @@ body {
                                                             }
     
                                                             li {
-                                                                width: 386.5px;
+                                                                width: 100%;
                                                                 display: flex;
-                                                                margin-bottom: 10px;
+                                                                margin-bottom: 2%;
                                                             }
     
                                                             .type1, .type2, .type3 {
-                                                                font-size: 30.923px;
+                                                                font-size: 1.6em;
                                                                 font-style: normal;
                                                                 font-weight: 600;
-                                                                margin-top: 7px;
-                                                                margin-left: 10.94px;
-                                                                margin-right: 46px;
-                                                            }
-                                                            .type3 {
-                                                                margin-right: 20px;
+                                                                margin-left: 5%;
+                                                                margin-top: 5%;
+                                                                width: 80%;
                                                             }
                                                             .glass1, .glass2, .glass3 {
-                                                                font-size: 30.923px;
+                                                                font-size: 1.5em;
                                                                 font-style: normal;
                                                                 font-weight: 400;
-                                                                margin-top: 8px;
-                                                                margin-right: 16.5px;
+                                                                width: 50%;
+                                                                margin-top: 5%;
                                                             }
                                                             
                                                             .compare1, .compare2, .compare3 {
-                                                                margin-top: 15px;
-                                                                font-size: 14.272px;
+                                                                margin-top: 8%;
+                                                                font-size: 0.8em;
                                                                 font-style: normal;
                                                                 font-weight: 300;
                                                                 color: #B4B4B4;
+                                                                width: 100%;
                                                             }
                                                             span {
                                                                 color: #FF8A00;
                                                             }
     
                                                             .type4, .type5, .type6 {
-                                                                font-size: 30.923px;
+                                                                font-size: 1.6em;
                                                                 font-style: normal;
                                                                 font-weight: 600;
-                                                                margin-top: 7px;
-                                                                margin-left: 10.94px;
-                                                                margin-right: 46px;
+                                                                margin-left: 5%;
+                                                                margin-top: 5%;
+                                                                width: 80%;
                                                             }
                                                             .glass4, .glass5, .glass6 {
-                                                                font-size: 30.923px;
+                                                                font-size: 1.5em;
                                                                 font-style: normal;
                                                                 font-weight: 400;
-                                                                margin-top: 8px;
-                                                                margin-right: 16.5px;
+                                                                width: 50%;
+                                                                margin-top: 5%;
                                                             }
+                                                            
                                                             .compare4, .compare5, .compare6 {
-                                                                margin-top: 15px;
-                                                                font-size: 14.272px;
+                                                                margin-top: 8%;
+                                                                font-size: 0.8em;
                                                                 font-style: normal;
                                                                 font-weight: 300;
                                                                 color: #B4B4B4;
+                                                                width: 100%;
                                                             }
                                                     }
     
@@ -275,19 +268,20 @@ body {
                                                         background: #A1A1A1;
                                                     }
                                                     .last-month {
-                                                        width: 600px;
-                                                        height: 230px;
+                                                        width: 35%;
+                                                        height: 5%;
     
                                                             p {
-                                                                width: 400px;
-                                                                margin: 0;
+                                                                width: 70%;
+                                                                margin-left: 14%;
+                                                                margin-top: 10%;
                                                             }
                                                             .last-month1 {
-                                                                margin-left: 158px;
-                                                                margin-top: 33px;
+                                                                margin-left: 10%;
+                                                                margin-top: 2%;
                                                             }
                                                             .last-month1 p {
-                                                                font-size: 29.306px;
+                                                                font-size: 1.7em;
                                                                 font-weight: 600;
                                                             }
                                                             span {
@@ -295,23 +289,22 @@ body {
                                                             }
     
                                                             .last-month2 {
-                                                                margin-left: 32px;
+                                                                margin-left: 2%;
                                                                 width: 600px;
                                                                 height: 150px;
                                                                 display: flex;
                                                             }
                                                             .last-month2-3 {
-                                                                margin-top: 33px;
-                                                                width: 80px;
-                                                                height: 100px;
+                                                                margin-top: 5%;
+                                                                width: 13%;
                                                             }
 
                                                             .last-month2-1 p {
-                                                                font-size: 27.436px;
-                                                                margin-bottom: 19px;
+                                                                font-size: 1.3em;
+                                                                margin-bottom: 20%;
                                                             }
                                                             .last-month2-2 p {
-                                                                font-size: 27.436px;
+                                                                font-size: 1.3em;
                                                             }
                                                             
                                                     }
@@ -320,33 +313,35 @@ body {
 
                                     //음주 빈도 & 음주량
                                     .fre-container {
-                                        width: 1642px;
-                                        height: 440px;
-                                        flex-direction: row;
-
+                                        width: 96%;
+                                        height: 100%;
+                                        display: flex;
                                         .drink-frequency {
-                                            width: 778px;
+                                            width: 70%;
                                             height: 100%;
                                             margin: 0;
-                                            margin-top: 34px;
+                                            margin-top: 3%;
+                                            margin-left: 3%;
                                             .fre-text {
                                                 display: flex;
                                                 
                                                 .fre-text1 {
-                                                    font-size: 33.905px;
+                                                    font-size: 2em;
                                                     font-weight: 500;
-                                                    margin-right: 493px;
+                                                    
                                                 }
                                                 .fre-text2 {
+                                                    margin-left: 60%;
                                                     .fre-text2-1 {
-                                                        font-size: 27.35px;
+                                                        font-size: 1.6em;
                                                         font-style: normal;
                                                         font-weight: 600;
                                                         color: #4979ED;
+                                                        margin-bottom: 2%;
                                                     }
                                                     .fre-text2-2 {
-                                                        font-size: 11.185px;
-                                                        margin-left: 20px;
+                                                        font-size: 0.7em;
+                                                        margin-left: 6%;
                                                         span {
                                                             color: #FF8A00;
                                                         }
@@ -354,7 +349,7 @@ body {
                                                 }
                                             }
                                             .fre-graph {
-                                                width: 742px;
+                                                width: 100%;
                                                 height: 312px;
                                                 border-radius: 19.004px;
                                                 background: #F5F5F5;
@@ -364,22 +359,26 @@ body {
                                                 .fre-graph1 {
                                                     display: flex;
                                                     justify-content: flex-end;
-                                                    padding-top: 16px;
-                                                    margin-right: 23px;
-                                                    margin-bottom: 13px;
+                                                    padding-top: 2.5%;
+                                                    margin-right: 3%;
+                                                    margin-bottom: 2%;
+                                                    .fre-circle {
+                                                        width: 2%;
+                                                        margin-right: 0.3%;
+                                                    }
                                                     .fre-graph2 {
                                                         color: #6A6A6A;
-                                                        font-size: 12.428px;
+                                                        font-size: 0.7em;
                                                         font-style: normal;
                                                         font-weight: 300;
                                                     }
                                                     
                                                 }
                                                 .fre-graph-line {
-                                                    width: 563px;
+                                                    width: 73%;
                                                     height: 1px;
                                                     background-color: #A8A8A8;
-                                                    margin-left: 90px;
+                                                    margin-left: 15%;
                                                 }
                                                 .fre-graph3 {
                                                     width: 100%;
@@ -387,12 +386,11 @@ body {
                                                     display: flex;
                                                     .fre-graph4 {
                                                         color: #799AEA;
-                                                        font-size: 11.185px;
+                                                        font-size: 0.7em;
                                                         font-style: normal;
                                                         font-weight: 300;
                                                         line-height: normal;
-                                                        margin-top: 150px;
-                                                        margin-left: 10px;
+                                                        margin-top: 25%;
                                                     }
                                                 }
 
@@ -402,29 +400,31 @@ body {
                                         }
 
                                         .drink-amount {
-                                            width: 778px;
+                                            width: 70%;
                                             height: 100%;
                                             margin: 0;
-                                            margin-top: 34px;
+                                            margin-top: 3%;
+                                            margin-left: 3%;
                                             .amount-text {
                                                 display: flex;
-                                                margin-left: 36px;
                                                 
                                                 .amount-text1 {
-                                                    font-size: 33.905px;
+                                                    font-size: 2em;
                                                     font-weight: 500;
-                                                    margin-right: 493px;
+                                                    
                                                 }
                                                 .amount-text2 {
+                                                    margin-left: 60%;
                                                     .amount-text2-1 {
-                                                        font-size: 27.35px;
+                                                        font-size: 1.6em;
                                                         font-style: normal;
                                                         font-weight: 600;
                                                         color: #4979ED;
+                                                        margin-bottom: 2%;
                                                     }
                                                     .amount-text2-2 {
-                                                        font-size: 11.185px;
-                                                        margin-left: 45px;
+                                                        font-size: 0.7em;
+                                                        margin-left: 6%;
                                                         span {
                                                             color: #FF8A00;
                                                         }
@@ -432,43 +432,45 @@ body {
                                                 }
                                             }
                                             .amount-graph {
-                                                width: 742px;
+                                                width: 100%;
                                                 height: 312px;
                                                 border-radius: 19.004px;
                                                 background: #F5F5F5;
                                                 box-shadow: 0px 16px 24px 0px rgba(0, 0, 0, 0.07), 2px 2px 6px 0px rgba(0, 0, 0, 0.10), -3px 0px 5px 0px rgba(0, 0, 0, 0.10);
                                                 margin-top: 10px;
-                                                margin-left: 36px;
 
                                                 .amount-graph1 {
                                                     display: flex;
-                                                    padding-top: 16px;
-                                                    margin-right: 23px;
-                                                    margin-bottom: 13px;
+                                                    justify-content: flex-end;
+                                                    padding-top: 2.5%;
+                                                    margin-right: 3%;
+                                                    margin-bottom: 2%;
                                                     .amount-graph1-1 {
-                                                        color: #6A6A6A;
-                                                        font-family: Pretendard;
-                                                        font-size: 12.428px;
-                                                        font-style: normal;
-                                                        font-weight: 600;
-                                                        line-height: normal;
-                                                        margin-left: 65px;
-                                                        margin-right: 376px;
+                                                        margin-right: 47%;
                                                     }
                                                     .amount-graph1-2 {
+                                                        width: 25%;
                                                         display: flex;
-                                                        color: #6A6A6A;
-                                                        font-size: 12.428px;
-                                                        font-style: normal;
-                                                        font-weight: 300;
+                                                        .amount-circle {
+                                                            width: 6%;
+                                                            margin-right: 2%;
+                                                        }
+                                                        .amount-graph2 {
+                                                            color: #6A6A6A;
+                                                            font-size: 0.7em;
+                                                            font-style: normal;
+                                                            font-weight: 300;
+                                                            margin-top: 2%;
+                                                        }
                                                     }
+                                                    
                                                     
                                                 }
                                                 .amount-graph-line {
-                                                    width: 563px;
+                                                    width: 73%;
                                                     height: 1px;
                                                     background-color: #A8A8A8;
-                                                    margin-left: 90px;
+                                                    margin-left: 15%;
                                                 }
                                                 .amount-graph3 {
                                                     width: 100%;
@@ -476,15 +478,13 @@ body {
                                                     display: flex;
                                                     .amount-graph4 {
                                                         color: #799AEA;
-                                                        font-size: 11.185px;
+                                                        font-size: 0.7em;
                                                         font-style: normal;
                                                         font-weight: 300;
                                                         line-height: normal;
-                                                        margin-top: 100px;
-                                                        margin-left: 5px;
+                                                        margin-top: 25%;
                                                     }
-                                                }
-
+                                                }  
                                             }
                                         }
                                     }
@@ -493,70 +493,77 @@ body {
                                     //음주 시간
 
                                     .time-box {
-                                        width: 1642px;
+                                        width: 93%;
                                         height: 338px;
+                                        margin-top: 3%;
                                         .time-text {
-                                            font-size: 33.905px;
+                                            font-size: 2em;
                                             font-weight: 500;
-                                            margin-right: 493px;
-                                            margin-left: 42px;
+                                            margin-left: 4%;
                                         }
                                         .time-container {
-                                            width: 1556px;
+                                            width: 100%;
                                             height: 230px;
                                             border-radius: 19.004px;
                                             background: #ECF2FF;
                                             box-shadow: 0px 16px 24px 0px rgba(0, 0, 0, 0.07), 2px 2px 6px 0px rgba(0, 0, 0, 0.10), -3px 0px 5px 0px rgba(0, 0, 0, 0.10);
-                                            margin-left: 42px;
-                                            margin-top: 13px;
+                                            margin-left: 3%;
+                                            margin-top: 1%;
                                             display: flex;
                                             .time-summary {
                                                 display: flex;
-                                                width: 466px;
+                                                width: 35%;
                                                 .time-summary1 {
-                                                    margin-left: 48px;
-                                                    margin-top: 33px;
+                                                    margin-left: 12%;
+                                                    margin-top: 15%;
                                                     .time-summary1-1 {
-                                                        font-size: 52.976px;
+                                                        font-size: 3em;
+                                                        margin-bottom: 3%;
                                                     }
                                                     .time-summary1-2 {
-                                                        font-size: 17.631px;
+                                                        font-size: 1.1em;
                                                     }
                                                 }
                                                 .time-summary-img {
-                                                    margin-top: 28px;
-                                                    margin-left: 35px;
+                                                    margin-top: 11%;
+                                                    margin-left: 5%;
+                                                    width: 8%;
+                                                    height: 8%;
                                                 }
                                             }
                                             .time-box-line {
                                                 width: 0.7px;
-                                                height: 188px;
+                                                height: 90%;
                                                 background: #A1A1A1;
+                                                margin-top: 1%;
+                                                margin-left: 4%;
                                             }
                                             .time-total {
-                                                margin-left: 54px;
-                                                margin-top: 33px;
+                                                width: 29%;
+                                                margin-left: 3%;
+                                                margin-top: 3%;
 
                                                 .time-total1{
-                                                    margin-bottom: 21.23px;
+                                                    margin-bottom:10%;
                                                     .time-total1-1 {
-                                                        font-size: 52.976px;
+                                                        font-size: 2em;
                                                         font-weight: 600;
+                                                        margin-bottom: 3%;
                                                     }
                                                     .time-total1-2 {
-                                                        font-size: 17.631px;
+                                                        font-size: 1em;
                                                         font-weight: 300;
                                                     }
                                                 }
                                                 .time-total2 {
                                                     .time-total2-1 {
-                                                        font-size: 27.56px;
+                                                        font-size: 2em;
                                                         font-weight: 400;
-                                                        margin-bottom: 3px;
+                                                        margin-bottom: 4%;
                                                     }
                                                     .time-total2-2 {
-                                                        font-size: 17.631px;
-                                                        font-weight: 400;
+                                                        font-size: 1.1em;
+                                                        font-weight: 300;
                                                         display: flex;
                                                     }
                                                     .time-total2-3 {
@@ -566,14 +573,14 @@ body {
                                                 }
                                             }
                                             .time-graph {
-                                                width: 750px;
+                                                width: 70%;
 
                                                 .time-graph1 {
                                                     display: flex;
                                                     justify-content: flex-end;
-                                                    padding-top: 10px;
-                                                    margin-right: 23px;
-                                                    margin-bottom: 8px;
+                                                    margin-right: 10%;
+                                                    margin-top: 2%;
+                                                    margin-bottom: 1%;
                                                     .time-graph2 {
                                                         color: #6A6A6A;
                                                         font-size: 12.428px;
@@ -583,7 +590,7 @@ body {
                                                     
                                                 }
                                                 .time-graph-line {
-                                                    width: 590px;
+                                                    width: 77%;
                                                     height: 1px;
                                                     background-color: #A8A8A8;
                                                     margin-left: 90px;
@@ -598,8 +605,6 @@ body {
                                                         font-style: normal;
                                                         font-weight: 300;
                                                         line-height: normal;
-                                                        margin-top: 150px;
-                                                        margin-left: 10px;
                                                     }
                                                 }
                                             }
@@ -608,43 +613,43 @@ body {
 
                                     //날씨 & 기분
                                     .mood-box {
-                                        width: 1642px;
+                                        width: 93%;
                                         height: 338px;
                                         .mood-text {
-                                            font-size: 33.905px;
+                                            font-size: 2em;
                                             font-weight: 500;
-                                            margin-right: 493px;
-                                            margin-left: 42px;
+                                            margin-left: 4%;
                                         }
                                         .mood-container {
-                                            width: 1556px;
+                                            width: 100%;
                                             height: 230px;
                                             border-radius: 19.004px;
                                             background: #F5F5F5;
                                             box-shadow: 0px 16px 24px 0px rgba(0, 0, 0, 0.07), 2px 2px 6px 0px rgba(0, 0, 0, 0.10), -3px 0px 5px 0px rgba(0, 0, 0, 0.10);
-                                            margin-left: 42px;
-                                            margin-top: 13px;
+                                            margin-left: 3%;
+                                            margin-top: 2%;
                                             display: flex;
 
                                             .weather {
-                                                width: 777px;
+                                                width: 50%;
                                                 height: 230px;
                                                 .weather1 {
-                                                    font-size: 35px;
+                                                    font-size: 2em;
                                                     font-style: normal;
                                                     font-weight: 400;
-                                                    margin-top: 23px;
-                                                    margin-left: 40px;
+                                                    margin-top: 4%;
+                                                    margin-left: 3%;
                                                 }
                                                 .weather2 {
-                                                    margin-top: 24px;
-                                                    margin-left: 40px;
+                                                    margin-top: 3%;
+                                                    margin-left: 6%;
                                                     display: flex;
                                                     .weather2-2 {
-                                                        font-size: 35px;
+                                                        font-size: 1.7em;
                                                         font-style: normal;
                                                         font-weight: 400;
-                                                        margin-left: 23px;
+                                                        margin-left: 4%;
+                                                        margin-top: 3%;
                                                     }
                                                 }
                                             }
@@ -655,24 +660,25 @@ body {
                                                 margin-top: 20px;
                                             }
                                             .mood {
-                                                width: 777px;
+                                                width: 50%;
                                                 height: 230px;
                                                 .mood1 {
-                                                    font-size: 33.905px;
+                                                    font-size: 2em;
                                                     font-style: normal;
                                                     font-weight: 400;
                                                     margin-top: 23px;
                                                     margin-left: 40px;
                                                 }
                                                 .mood2 {
-                                                    margin-top: 24px;
-                                                    margin-left: 40px;
+                                                    margin-top: 3%;
+                                                    margin-left: 6%;
                                                     display: flex;
                                                     .mood2-2 {
-                                                        font-size: 35px;
+                                                        font-size: 1.7em;
                                                         font-style: normal;
                                                         font-weight: 400;
-                                                        margin-left: 23px;
+                                                        margin-left: 4%;
+                                                        margin-top: 3%;
                                                     }
                                                 }
                                             }
@@ -681,57 +687,57 @@ body {
 
                                     //음주 스타일
                                     .style-box {
-                                        width: 1642px;
+                                        width: 93%;
                                         height: 338px;
                                         .style-text {
-                                            font-size: 33.905px;
+                                            font-size: 2em;
                                             font-weight: 500;
-                                            margin-right: 493px;
-                                            margin-left: 42px;
+                                            margin-left: 4%;
                                         }
                                         .style-container {
-                                            width: 1556px;
+                                            width: 100%;
                                             height: 230px;
                                             border-radius: 19.004px;
                                             background: #F5F5F5;
                                             box-shadow: 0px 16px 24px 0px rgba(0, 0, 0, 0.07), 2px 2px 6px 0px rgba(0, 0, 0, 0.10), -3px 0px 5px 0px rgba(0, 0, 0, 0.10);
-                                            margin-left: 42px;
-                                            margin-top: 13px;
+                                            margin-left: 3%;
+                                            margin-top: 2%;
                                             display: flex;
 
                                             .style-month {
-                                                width: 777px;
+                                                width: 50%;
                                                 height: 230px;
                                                 display: flex;
                                                 .style-month1 img{
-                                                    width: 168px;
-                                                    height: 168px;
-                                                    margin-top: 31px;
-                                                    margin-left: 40px;
+                                                    width: 70%;
+                                                    height: 70%;
+                                                    margin-top: 13%;
+                                                    margin-left: 20%;
                                                 }
                                                 .style-month2 {
+                                                    width: 70%;
                                                     .style-month2-1 {
-                                                        font-size: 29.398px;
+                                                        font-size: 1.6em;
                                                         font-style: normal;
                                                         font-weight: 300;
-                                                        margin-top: 54px;
-                                                        margin-left: 17px;
+                                                        margin-top: 12%;
+                                                        margin-left: 4%;
                                                         .style-month2-2 {
                                                             font-weight: bold;
                                                         }
                                                     }
                                                     .style-month2-3 {
-                                                        font-size: 29.398px;
+                                                        font-size: 1.6em;
                                                         font-style: normal;
                                                         font-weight: 300;
-                                                        margin-top: 40px;
-                                                        margin-left: 150px;
+                                                        margin-top: 9%;
+                                                        margin-left: 13%;
                                                     }
                                                     .style-month2-4 {
-                                                        font-size: 29.398px;
+                                                        font-size: 1.6em;
                                                         font-style: normal;
                                                         font-weight: 300;
-                                                        margin-left: 110px;
+                                                        margin-left: 3%;
                                                         .style-month2-5 {
                                                             font-weight: 600;
                                                         }
@@ -745,37 +751,40 @@ body {
                                                 margin-top: 20px;
                                             }
                                             .style-6month {
-                                                width: 777px;
+                                                width: 50%;
                                                 height: 230px;
                                                 display: flex;
                                                 .style-6month1 img{
-                                                    width: 133.5px;
-                                                    height: 133.5px;
-                                                    margin-top: 65px;
-                                                    margin-left: 41px;
+                                                    width: 70%;
+                                                    height: 70%;
+                                                    margin-top: 13%;
+                                                    margin-left: 20%;
+                                                }
+                                                .style-6month2 {
+                                                    width: 70%;
                                                 }
                                                 .style-6month2-1 {
-                                                    font-size: 29.398px;
-                                                    font-style: normal;
-                                                    font-weight: 300;
-                                                    margin-top: 54px;
-                                                    margin-left: 37px;
+                                                    font-size: 1.6em;
+                                                        font-style: normal;
+                                                        font-weight: 300;
+                                                        margin-top: 12%;
+                                                        margin-left: 4%;
                                                     .style-6month2-2 {
                                                         font-weight: bold;
                                                     }
                                                 }
                                                 .style-6month2-3 {
-                                                    font-size: 29.398px;
+                                                    font-size: 1.6em;
                                                     font-style: normal;
                                                     font-weight: 300;
-                                                    margin-top: 40px;
-                                                    margin-left: 170px;
+                                                    margin-top: 9%;
+                                                    margin-left: 13%;
                                                 }
                                                 .style-6month2-4 {
-                                                    font-size: 29.398px;
-                                                    font-style: normal;
-                                                    font-weight: 300;
-                                                    margin-left: 90px;
+                                                    font-size: 1.6em;
+                                                        font-style: normal;
+                                                        font-weight: 300;
+                                                        margin-left: 3%;
                                                     .style-6month2-5 {
                                                         font-weight: 600;
                                                     }
@@ -799,9 +808,3 @@ body {
             }
 
     }
-    
-
-    
-    
-
-}

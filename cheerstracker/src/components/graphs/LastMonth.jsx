@@ -2,7 +2,7 @@ import React from 'react';
 
 const DynamicWidthDiv = ({ value, maxValue, color }) => {
   // 데이터 값에 따라 width를 계산
-  const width = `${(value / maxValue) * 100 + 300}px`;
+  const width = `${(value / maxValue) * 100 + 220}px`;
 
   return (
     <div style={{ display: 'flex', alignItems: 'center', marginLeft: '10px', marginTop: '36px', marginBottom: '2px' }}>

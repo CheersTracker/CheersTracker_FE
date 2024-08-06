@@ -15,7 +15,6 @@ import miniLogo from '../assets/images/Logo/CheersTracker_logo_mini.png'
 
 const SideBar = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-
   const clickMenu = () => {
     setSidebarOpen(!sidebarOpen);
   };
@@ -26,6 +25,7 @@ const SideBar = () => {
         <div onClick={clickMenu} className='sidebar-box'>
           <img src={Menu} alt="메뉴 아이콘" />
         </div>
+
         <div className='sidebar-box-logout'>
         <div className='sidebar-logoout-container'>
           {sidebarOpen && <p className='sidebar-nickname'>닉네임</p>}
