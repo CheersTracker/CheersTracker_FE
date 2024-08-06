@@ -72,15 +72,21 @@ const DrinkDetail = () => {
           'Authorization': `Token ${token}`,
         },
       });
+  
+      console.log(response.data);
 
-      // URL에서 받은 날짜와 일치하는 데이터 필터링
-      const filteredData = response.data.filter(
+      // 날짜가 같은 모든 데이터
+      const filteredRecords = response.data.filter(
         (record) => moment(record.date).format('YYYY-MM-DD') === date
       );
-
-      if (filteredData.length > 0) {
-        setDrinkData(filteredData[0]); // 첫 번째 일치하는 데이터 사용
-        console.log('일치하는 첫번째 데이터:',filteredData[0]);
+  
+      // 날짜가 같은 데이터 중 id가 가장 큰 데이터
+      const recordWithMaxId = filteredRecords.reduce((max, record) => {
+        return (max === null || record.id > max.id) ? record : max;
+      }, null);
+  
+      if (recordWithMaxId) {
+        setDrinkData(recordWithMaxId);
       } else {
         console.error('No matching data found');
       }
@@ -91,7 +97,7 @@ const DrinkDetail = () => {
 
   useEffect(() => {
     fetchDrinkDetail();
-  }, [date]); // date가 변경될 때마다 데이터를 다시 가져옴
+  }, [date]);
 
   return (
     <div style={{ display: 'flex' }}>

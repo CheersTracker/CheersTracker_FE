@@ -17,7 +17,7 @@ import Makgeolli from '../assets/images/makgeolli.svg';
 import Soju from '../assets/images/soju.svg';
 import Whisky from '../assets/images/whisky.svg';
 import Wine from '../assets/images/wine.svg';
-import SideBar from '../components/SideBar'
+import SideBar from '../components/SideBar';
 import axios from 'axios';
 
 const DrinkCreate = () => {
@@ -74,7 +74,7 @@ const DrinkCreate = () => {
   ]);
 
   useEffect(() => {
-    if (data.drinks) {
+    if (data && data.drinks) {
       const updatedOptions = drinkOptions.map((option) => {
         const found = data.drinks.find((drink) => drink.type === option.type);
         return {
@@ -86,7 +86,7 @@ const DrinkCreate = () => {
       });
       setDrinkOptions(updatedOptions);
     }
-  }, [data.drinks]);
+  }, [data]);
 
   const handleCheckboxChange = (index) => {
     setDrinkOptions((prevOptions) =>
@@ -121,7 +121,6 @@ const DrinkCreate = () => {
 
   const [memo, setMemo] = useState(data.memo || '');
   const [currentId, setCurrentId] = useState(null);
-  // currentId에 id 담겨있음
 
   const CurrentUser = async () => {
     try {
@@ -131,7 +130,7 @@ const DrinkCreate = () => {
           'Authorization': `Token ${token}`,
         },
       });
-      console.log("user data",response.data);
+      console.log("user data", response.data);
       setCurrentId(response.data.id);
     } catch (error) {
       console.error('user:', error);
@@ -140,24 +139,22 @@ const DrinkCreate = () => {
 
   useEffect(() => {
     CurrentUser();
-  },[])
+  }, [])
 
   const handleSave = async () => {
     try {
       const token = localStorage.getItem('token');
       
-      // 음료 옵션에서 선택된 항목들을 리스트로 변환
       const drinkTypes = drinkOptions
         .filter(option => option.isChecked)
-        .map(option => option.type); // drink_type 리스트 생성
+        .map(option => option.type);
   
       const quantities = drinkOptions
         .filter(option => option.isChecked)
-        .map(option => parseInt(option.quantity, 10) || 0); // quantity 리스트 생성
+        .map(option => parseInt(option.quantity, 10) || 0);
   
-        const totalServings = quantities.reduce((sum, quantity) => sum + quantity, 0);
+      const totalServings = quantities.reduce((sum, quantity) => sum + quantity, 0);
 
-      // 요청 데이터 생성
       const requestData = {
         user: currentId,
         date: moment(value).format('YYYY-MM-DD'),
@@ -166,7 +163,7 @@ const DrinkCreate = () => {
         mood: selectedMood,
         memo: memo || "",
         drink_type: drinkTypes,
-        quantity : quantities,
+        quantity: quantities,
         servings: totalServings,
       };
   
@@ -201,6 +198,49 @@ const DrinkCreate = () => {
     }
   };
   
+  const EditDrink = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const drinkTypes = drinkOptions
+        .filter(option => option.isChecked)
+        .map(option => option.type);
+  
+      const quantities = drinkOptions
+        .filter(option => option.isChecked)
+        .map(option => parseInt(option.quantity, 10) || 0);
+  
+      const totalServings = quantities.reduce((sum, quantity) => sum + quantity, 0);
+  
+      const requestData = {
+        user: currentId,
+        date: moment(value).format('YYYY-MM-DD'),
+        drinking_duration: selectedOption.slice(0, 10),
+        weather: selectedWeather,
+        mood: selectedMood,
+        memo: memo || "",
+        drink_type: drinkTypes,
+        quantity: quantities,
+        servings: totalServings,
+      };
+  
+      const response = await axios.put(`http://127.0.0.1:8000/drinking/record/${data.date}`, requestData, {
+        headers: {
+          'Authorization': `Token ${token}`,
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      console.log('수정되었습니다 데이터는! :',response.data);
+      alert('음주 기록이 성공적으로 수정되었습니다!');
+      navigate(`/drinking/detail/${moment(value).format('YYYY-MM-DD')}`);
+    } catch (error) {
+      console.error('음주 기록 수정 실패:', error);
+      alert('음주 기록 수정에 실패했습니다.');
+    }
+  };
+
+  const handleCancel = () => {
+    navigate('/');
+  };
 
   return (
     <div style={{ display: 'flex' }}>
@@ -209,7 +249,7 @@ const DrinkCreate = () => {
         <div className='drink-create-top'>
           <h2>음주 기록</h2>
           <div className='btn-container'>
-            <button className='drink-create-cancel-btn'>취소하기</button>
+            <button className='drink-create-cancel-btn' onClick={handleCancel}>취소하기</button>
             <button className='drink-create-delete-btn' onClick={handleSave}>저장하기</button>
           </div>
         </div>

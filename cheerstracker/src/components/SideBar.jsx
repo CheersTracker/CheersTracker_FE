@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../assets/scss/sidebar.scss';
 import '../assets/scss/reset.scss';
@@ -12,6 +12,7 @@ import Menu from '../assets/images/Menu.svg';
 import User from '../assets/images/User.svg';
 import Logo from '../assets/images/Logo/CheersTracker_logo.png';
 import miniLogo from '../assets/images/Logo/CheersTracker_logo_mini.png'
+import axios from 'axios';
 
 const SideBar = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -19,6 +20,29 @@ const SideBar = () => {
   const clickMenu = () => {
     setSidebarOpen(!sidebarOpen);
   };
+
+  // 유저 이름 불러오기
+  const [currentNickname, setCurrentNickname] = useState(null);
+  const [currentName, setCurrentName] = useState(null);
+
+  const CurrentUser = async () => {
+      try {
+          const token = localStorage.getItem('token');
+          const response = await axios.get('http://127.0.0.1:8000/user/current/', {
+              headers: {
+                  'Authorization': `Token ${token}`,
+              },
+          });
+          setCurrentNickname(response.data.nickname);
+          setCurrentName(response.data.username);
+      } catch (error) {
+          console.error('user:', error);
+      }
+  }
+
+  useEffect(() => {
+    CurrentUser();
+}, []);
 
   return (
     <div className={`sidebar-big-container ${sidebarOpen ? 'open' : 'closed'}`}>
@@ -28,8 +52,8 @@ const SideBar = () => {
         </div>
         <div className='sidebar-box-logout'>
         <div className='sidebar-logoout-container'>
-          {sidebarOpen && <p className='sidebar-nickname'>닉네임</p>}
-          {sidebarOpen && <p className='sidebar-email'>이메일주소</p>}
+          {sidebarOpen && <p className='sidebar-nickname'>{currentNickname}</p>}
+          {sidebarOpen && <p className='sidebar-email'>{currentName}</p>}
           </div>
           <img src={Logout} alt="로그아웃 아이콘" />
         </div>

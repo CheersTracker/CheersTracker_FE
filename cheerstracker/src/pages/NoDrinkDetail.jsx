@@ -119,7 +119,10 @@ const NoDrinkDetail = () => {
             });
 
             if (response.data) {
-                const record = response.data[0];
+                const count = response.data.length;
+                console.log(count);
+
+                const record = response.data[count-1];
                 setStartDay(record['start_date']);
                 setEndDay(record['end_date']);
                 setMoney(record['savings']);
@@ -134,8 +137,8 @@ const NoDrinkDetail = () => {
                 
                 const passDay = Math.floor((currentDate - startDate) / (1000 * 60 * 60 * 24)) +1;
                 const duration = Math.floor((endDate - startDate) / (1000 * 60 * 60 * 24)) + 1;
-                const remain = Math.floor((endDate - currentDate) / (1000 * 60 * 60 * 24))+1;
-                
+                const remain = duration - passDay;
+
                 setPassDay(passDay);
                 setDuration(duration);
                 setRemain(remain);
