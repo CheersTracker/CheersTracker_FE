@@ -145,7 +145,19 @@ const DrinkCreate = () => {
   const handleSave = async () => {
     try {
       const token = localStorage.getItem('token');
+      
+      // 음료 옵션에서 선택된 항목들을 리스트로 변환
+      const drinkTypes = drinkOptions
+        .filter(option => option.isChecked)
+        .map(option => option.type); // drink_type 리스트 생성
   
+      const quantities = drinkOptions
+        .filter(option => option.isChecked)
+        .map(option => parseInt(option.quantity, 10) || 0); // quantity 리스트 생성
+  
+        const totalServings = quantities.reduce((sum, quantity) => sum + quantity, 0);
+
+      // 요청 데이터 생성
       const requestData = {
         user: currentId,
         date: moment(value).format('YYYY-MM-DD'),
@@ -153,15 +165,12 @@ const DrinkCreate = () => {
         weather: selectedWeather,
         mood: selectedMood,
         memo: memo || "",
-        servings: drinkOptions
-          .filter(option => option.isChecked)
-          .map(option => ({
-            drink_type: option.type,
-            quantity: parseInt(option.quantity, 10) || 0,
-          })),
+        drink_type: drinkTypes,
+        quantity : quantities,
+        servings: totalServings,
       };
   
-      if (requestData.servings.length === 0) {
+      if (drinkTypes.length === 0) {
         alert('적어도 하나의 음료를 선택해야 합니다.');
         return;
       }
@@ -187,7 +196,7 @@ const DrinkCreate = () => {
         alert(`오류 발생: ${JSON.stringify(error.response.data)}`);
       }
       if (error.response && error.response.status === 400) {
-        alert('400에러');
+        alert('400 에러');
       }
     }
   };

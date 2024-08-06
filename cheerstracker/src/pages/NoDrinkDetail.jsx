@@ -19,7 +19,6 @@ const NoDrinkDetail = () => {
 
     const handleWriteClick = () => {
         setIsEditing(true);
-        setTempNote(note); 
     };
 
     const handleCancelClick = () => {
