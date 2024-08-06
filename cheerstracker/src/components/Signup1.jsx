@@ -32,7 +32,7 @@ const Signup1 = ({ onNext }) => {
                     <p className='login_id_label'>아이디를 입력하세요.</p>
                     <div className="id_input_content">
                         <input type="text" id='id' value={id} onChange={(e) => setId(e.target.value)} required />
-                        <button type='button' className='duplicate_btn'>중복 확인</button>
+                        <button type='button' className='duplicate_btn' onClick={() => alert("사용 가능한 아이디입니다.")}>중복 확인</button>
                     </div>
                 </div>
                 <div className='login_pw_container'>
