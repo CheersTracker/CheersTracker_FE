@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import '../assets/scss/nodrinkdetail.scss';
 import SideBar from '../components/SideBar';
+import Running from '../assets/images/running.svg';
+import LogoLong from '../assets/images/Logo/CheersTracker_logo_long.png';
 import axios from 'axios';
 
 const NoDrinkDetail = () => {
@@ -117,7 +119,10 @@ const NoDrinkDetail = () => {
             });
 
             if (response.data) {
-                const record = response.data[0];
+                const count = response.data.length;
+                console.log(count);
+
+                const record = response.data[count-1];
                 setStartDay(record['start_date']);
                 setEndDay(record['end_date']);
                 setMoney(record['savings']);
@@ -132,8 +137,8 @@ const NoDrinkDetail = () => {
                 
                 const passDay = Math.floor((currentDate - startDate) / (1000 * 60 * 60 * 24)) +1;
                 const duration = Math.floor((endDate - startDate) / (1000 * 60 * 60 * 24)) + 1;
-                const remain = Math.floor((endDate - currentDate) / (1000 * 60 * 60 * 24));
-                
+                const remain = duration - passDay;
+
                 setPassDay(passDay);
                 setDuration(duration);
                 setRemain(remain);
@@ -154,9 +159,10 @@ const NoDrinkDetail = () => {
             <div className='nodrink-detail-header'>
                 <div className='nodrink-detail-header-left'>
                     <div>
-                        <p>{currentName}</p>
-                        <p>님의 금주 기록</p>
-
+                        <div>
+                            <p>{currentName}</p>
+                            <p>님의 금주 기록</p>
+                        </div>
                         <input type="checkbox" id="toggle" hidden />
                         <label htmlFor="toggle" className="toggleSwitch">
                             <span className="toggleButton"></span>
@@ -165,11 +171,16 @@ const NoDrinkDetail = () => {
                         </label>                   
                     </div>
                 </div>
-                <div className='nodrink-detail-header-right'>
+            </div>
+            
+            <div className='nodrink-detail-header-right'>
                     <div>
                         오늘,
                         <p>{passDay}일</p>
                         째 금주 중
+                    </div>
+                    <div>
+                        <img src={Running} alt="달리는 아이콘" />
                     </div>
                     <div>
                         목표인
@@ -179,7 +190,6 @@ const NoDrinkDetail = () => {
                         남았어요!
                     </div>
                 </div>
-            </div>
 
             <div className='nodrink-detail-content-container'>
             <div className='nodrink-detail-container section2'>
@@ -216,55 +226,9 @@ const NoDrinkDetail = () => {
                 <h3>금주 목표</h3>
                 <p className='norink-detail-goal-container'>{goal}</p>
             </div>
+            <img src={LogoLong} alt="긴 로고 이미지" className='logo-img'/>
+            
 
-            <div className='nodrink-detail-container'>
-                <div className='nodrink-detail-memo'>
-                    {isEditing ? (
-                        <>
-                            <div>
-                                <h3>오늘의 금주 메모</h3>
-                                {note ? (
-                                    <div>
-                                        <button onClick={handleCancelClick} className='btn-gray'>취소</button>
-                                        <button onClick={handleCompleteClick}>수정 완료</button>
-                                    </div>
-                                ) : (
-                                    <div>                                        
-                                        <button onClick={handleCancelClick} className='btn-gray'>취소</button>
-                                        <button onClick={handleCompleteClick}>작성 완료</button>
-                                    </div>
-                                )}
-                            </div>
-                            
-                            <input className='nodrink-today-goal-input'
-                                type="text"
-                                value={tempNote}
-                                onChange={(e) => setTempNote(e.target.value)}
-                            />
-                        </>
-                    ) : (
-                        <>
-                            {note ? (                                
-                                <>
-                                    <div>
-                                        <h3>오늘의 금주 메모</h3>
-                                        <button onClick={handleEditClick}>수정하기</button>
-                                    </div>
-                                    <p>{note}</p>
-                                </>                                
-                            ) : (
-                                <>
-                                    <div>
-                                        <h3>오늘의 금주 메모</h3>
-                                        <button onClick={handleWriteClick}>작성하기</button>
-                                    </div>
-                                    <span>작성하러 가볼까요?</span>
-                                </>
-                            )}
-                        </>
-                    )}
-                </div>
-            </div>
         </div>
     </div>       
     </div>

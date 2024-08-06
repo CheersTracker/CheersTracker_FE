@@ -19,7 +19,7 @@ const Frequency = () => {
                     </div>
                     <div className='fre-graph'>
                         <div className='fre-graph1'>
-                            <img src={Circled}></img>
+                            <img className='fre-circle' src={Circled}></img>
                             <div className='fre-graph2'>최근 6개월과 비교해드려요</div>
                         </div>
                         <div className='fre-graph-line'></div>
@@ -42,7 +42,7 @@ const Frequency = () => {
                         <div className='amount-graph1'>
                             <div className='amount-graph1-1'>청년(18~29세) 여성 기준</div>
                             <div className='amount-graph1-2'>
-                                <img src={Circled}></img>
+                                <img className='amount-circle' src={Circled}></img>
                                 <div className='amount-graph2'>최근 6개월과 비교해드려요</div>
                             </div>
                                 
