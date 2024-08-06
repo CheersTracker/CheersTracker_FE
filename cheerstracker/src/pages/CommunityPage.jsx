@@ -21,17 +21,6 @@ const CommunityPage = () => {
     setActiveIndex(index);
   };
 
-  // const SearchPosts = async (search = '') => {
-  //   try {
-  //     const response = await axios.get('/community/posts', {
-  //       params: { search },
-  //     });
-  //     setPosts(response.data);
-  //   } catch (error) {
-  //     console.error('포스트 조회 실패:', error);
-  //   }
-  // };
-
   const fetchPosts = async (search = '') => {
     try {
       const response = await axios.get(`http://127.0.0.1:8000/community/posts/`, {

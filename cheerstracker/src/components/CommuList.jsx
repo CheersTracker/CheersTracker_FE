@@ -9,9 +9,29 @@ const CommuList = ({ post, postid }) => {
     const [clickHeart, setClickHeart] = useState(false);
     const [commentList, setCommentList] = useState([]);
     const [commentLength, setCommentLength] = useState(0);
+    const [likeCount, setLikeCount] = useState(0);
     const formatDate = (dateString) => {
         const date = new Date(dateString);
         return date.toISOString().split('T')[0];
+    };
+
+    const handleCountHeart = async () => {
+        try {
+            const token = localStorage.getItem('token');
+            const response = await axios.get(`http://127.0.0.1:8000/community/posts/${postid}/like/`, {
+                headers: {
+                    'Authorization': `Token ${token}`,
+                },
+            });
+            if (response.status === 200) {
+                console.log("likecount", response.data)
+                const { is_liked, likes_count } = response.data;
+                setClickHeart(is_liked);
+                setLikeCount(likes_count);
+            }
+        } catch (error) {
+            console.error('좋아요 처리 중 오류 발생:', error);
+        }
     };
 
 
@@ -39,6 +59,7 @@ const CommuList = ({ post, postid }) => {
 
     useEffect(() => {
         fetchCommentList();
+        handleCountHeart();
     }, [postid]);
 
     return (
@@ -64,7 +85,7 @@ const CommuList = ({ post, postid }) => {
                             ) : (
                                 <GoHeart className='heart' onClick={handleClickHeart} />
                             )}
-                            <span>14</span>
+                            <span>{ likeCount }</span>
                         </div>
                         <div className="content_item comment_item">
                             <LiaComment />

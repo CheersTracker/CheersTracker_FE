@@ -80,7 +80,7 @@ const Post = ({ content, isEditing, setContent, setImages }) => {
         icon.className = 'icon-container';
 
         ReactDOM.render(<TbPaperclip />, icon);
-        
+
         button.appendChild(icon);
         button.onclick = fileHandler;
     }, [fileHandler]);
@@ -100,14 +100,26 @@ const Post = ({ content, isEditing, setContent, setImages }) => {
     }, [isEditing, content]);
 
     return (
-        <ReactQuill
-            className='post_write'
-            ref={quillRef}
-            modules={modules}
-            value={editorContent}
-            onChange={handleTextChange}
-            theme="snow"
-        />
+        <>
+            {isEditing ? (
+                <ReactQuill
+                    className='post_write'
+                    ref={quillRef}
+                    modules={modules}
+                    value={editorContent}
+                    onChange={handleTextChange}
+                    theme="snow"
+                />
+            ) : (
+                <ReactQuill
+                    className='post_write'
+                    ref={quillRef}
+                    modules={modules}
+                    onChange={handleTextChange}
+                    theme="snow"
+                />
+            )}
+        </>
     );
 };
 

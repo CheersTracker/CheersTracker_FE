@@ -6,11 +6,13 @@ import CommuList from '../components/CommuList'
 import Comment from '../components/Comment'
 import SideBar from '../components/SideBar'
 import axios from 'axios';
+import { Link } from 'react-router-dom'
 
 const MyCommunity = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [myPosts, setMyPosts] = useState([]);
   const [myComments, setMyComments] = useState([]);
+  const [likedPosts, setLikedPosts] = useState([]);
 
   const categories = ['내가 쓴 글', '좋아요 누른 글', '내가 쓴 댓글'];
 
@@ -23,9 +25,9 @@ const MyCommunity = () => {
       const token = localStorage.getItem('token');
       const response = await axios.get(`http://127.0.0.1:8000/community/user/posts/`, {
         headers: {
-            'Authorization': `Token ${token}`,
+          'Authorization': `Token ${token}`,
         },
-    });
+      });
       console.log(response.data)
       setMyPosts(response.data);
     } catch (error) {
@@ -38,13 +40,28 @@ const MyCommunity = () => {
       const token = localStorage.getItem('token');
       const response = await axios.get(`http://127.0.0.1:8000/community/user/comments/`, {
         headers: {
-            'Authorization': `Token ${token}`,
+          'Authorization': `Token ${token}`,
         },
       });
       console.log(response.data);
       setMyComments(response.data);
     } catch (error) {
       console.error('Error fetching comments:', error);
+    }
+  };
+
+  const fetchMyLikedPosts = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const response = await axios.get(`http://127.0.0.1:8000/community/user/liked-posts/`, {
+        headers: {
+          'Authorization': `Token ${token}`,
+        },
+      });
+      console.log(response.data);
+      setLikedPosts(response.data);
+    } catch (error) {
+      console.error('Error fetching liked posts:', error);
     }
   };
 
@@ -55,6 +72,12 @@ const MyCommunity = () => {
   useEffect(() => {
     if (activeIndex === 2) {
       fetchMyComments();
+    }
+  }, [activeIndex]);
+
+  useEffect(() => {
+    if (activeIndex === 1) {
+      fetchMyLikedPosts();
     }
   }, [activeIndex]);
 
@@ -79,16 +102,24 @@ const MyCommunity = () => {
           </div>
         </section>
         <section className="commu_list_area">
-        {activeIndex === 0 && myPosts.length > 0 ? (
+          {activeIndex === 0 && myPosts.length > 0 ? (
             myPosts.map((post) => (
+              <Link to={`/community/posts/${post.id}`}>
+                <div className="commu_list_item" key={post.id}>
+                  <CommuList post={post} postid={post.id} />
+                </div>
+              </Link>
+            ))
+          ) : activeIndex === 1 && likedPosts.length > 0 ? (
+            likedPosts.map((post) => (
               <div className="commu_list_item" key={post.id}>
-                <CommuList post={post} />
+                <CommuList post={post} postid={post.id} />
               </div>
             ))
           ) : activeIndex === 2 && myComments.length > 0 ? (
             myComments.map((comment) => (
-              <div style={{width: "95%", position: "relative", left: "5%"}} key={comment.id}>
-                <Comment comment={comment} /> {/* Comment 컴포넌트 사용 */}
+              <div style={{ width: "95%", position: "relative", left: "5%" }} key={comment.id}>
+                <Comment comment={comment} />
               </div>
             ))
           ) : (

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { AiOutlineEye } from 'react-icons/ai';
+import { AiOutlineAlert, AiOutlineEye } from 'react-icons/ai';
 import { GoHeart, GoHeartFill } from 'react-icons/go';
 import { LiaComment } from 'react-icons/lia';
 import { FaEllipsisV, FaRegTrashAlt } from 'react-icons/fa';
@@ -9,19 +9,22 @@ import Comment from '../components/Comment';
 import ReComment from './ReComment';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import ReportModal from './ReportModal';
+import ReportComModal from './ReportComModal';
 
-const CommuDetail = ({ commuDetail, deletePost, nickname, postid }) => {
+const CommuDetail = ({ commuDetail, deletePost, nickname, postid, showList, currentUserId }) => {
+    console.log("showList", showList)
     console.log('commuDetail', commuDetail);
     const commuAPI = window.location.pathname.split('/').filter(segment => segment !== '').pop();
     const commuAPIInt = parseInt(commuAPI, 10);
     const inputRef = useRef(null);
     const navigate = useNavigate();
 
+    const [showToggleList, setShowToggleList] = useState(false);
     const [showComments, setShowComments] = useState(false);
     const [openReCommentId, setOpenReCommentId] = useState(null);
     const [showCancel, setShowCancel] = useState(false);
     const [showReCancel, setShowReCancel] = useState(false);
-    const [showList, setShowLists] = useState(false);
     const [clickHeart, setClickHeart] = useState(false);
     const [newComment, setNewComment] = useState('');
     const [commentList, setCommentList] = useState([]);
@@ -29,6 +32,72 @@ const CommuDetail = ({ commuDetail, deletePost, nickname, postid }) => {
     const [newReComment, setNewReComment] = useState('');
     const [reCommentList, setReCommentList] = useState([]);
     const [reCommentLength, setReCommentLength] = useState(0);
+    const [showConfirmModal, setShowConfirmModal] = useState(false);
+    const [showCompleteModal, setShowCompleteModal] = useState(false);
+    const [likeCount, setLikeCount] = useState(0);
+
+    const handleLike = async () => {
+        try {
+            const token = localStorage.getItem('token');
+            const response = await axios.post(`http://127.0.0.1:8000/community/posts/${postid}/like/`, {}, {
+                headers: {
+                    'Authorization': `Token ${token}`,
+                },
+            });
+            if (response.status === 200) {
+                setClickHeart(true);
+                setLikeCount(prevCount => prevCount + 1);
+            }
+        } catch (error) {
+            console.error('좋아요 처리 중 오류 발생:', error);
+        }
+    };
+
+    const handleUnlike = async () => {
+        try {
+            const token = localStorage.getItem('token');
+            const response = await axios.post(`http://127.0.0.1:8000/community/posts/${postid}/like/`, {}, {
+                headers: {
+                    'Authorization': `Token ${token}`,
+                },
+            });
+    
+            if (response.status === 200) {
+                setClickHeart(false);
+                setLikeCount(prevCount => prevCount - 1);
+            }
+        } catch (error) {
+            console.error('좋아요 삭제 중 오류 발생:', error);
+        }
+    };       
+
+    const handleCountHeart = async () => {
+        try {
+            const token = localStorage.getItem('token');
+            const response = await axios.get(`http://127.0.0.1:8000/community/posts/${postid}/like/`, {
+                headers: {
+                    'Authorization': `Token ${token}`,
+                },
+            });
+            if (response.status === 200) {
+                console.log("likecount", response.data);
+                const { is_liked, likes_count } = response.data;
+                setClickHeart(is_liked);
+                setLikeCount(likes_count);
+            }
+        } catch (error) {
+            console.error('좋아요 처리 중 오류 발생:', error);
+        }
+    };
+
+    
+    const handleClickHeart = () => {
+        if (clickHeart) {
+            handleUnlike();
+        } else {
+            handleLike();
+        }
+    }; 
 
     const addComment = async () => {
         if (!newComment) {
@@ -122,15 +191,12 @@ const CommuDetail = ({ commuDetail, deletePost, nickname, postid }) => {
 
     useEffect(() => {
         fetchCommentList();
+        handleCountHeart();
     }, [postid]);
 
     const updatePost = () => {
         const postId = window.location.pathname.split('/').filter(segment => segment !== '').pop();
         navigate(`/post/${postId}`, { state: { isEditing: true } });
-    };
-
-    const handleClickHeart = () => {
-        setClickHeart(!clickHeart);
     };
 
     const toggleReComments = (commentId) => {
@@ -147,7 +213,7 @@ const CommuDetail = ({ commuDetail, deletePost, nickname, postid }) => {
     };
 
     const toggleLists = () => {
-        setShowLists(!showList);
+        setShowToggleList(!showToggleList);
     };
 
     const handleFocus = () => {
@@ -206,8 +272,32 @@ const CommuDetail = ({ commuDetail, deletePost, nickname, postid }) => {
         return `${year}.${month}.${day}.${hours}:${minutes}`;
     };
 
+    const handleReportClick = () => {
+        setShowConfirmModal(true);
+    };
+
+    const handleCloseModal = () => {
+        setShowConfirmModal(false);
+        setShowCompleteModal(false);
+    };
+
+    const handleConfirm = () => {
+        setShowConfirmModal(false);
+        setShowCompleteModal(true);
+    };
+
     return (
         <div className='commu_detail_container'>
+            <ReportModal
+                show={showConfirmModal}
+                onClose={handleCloseModal}
+                onConfirm={handleConfirm}
+                className='report_modal'
+            />
+            <ReportComModal
+                show={showCompleteModal}
+                onClose={handleCloseModal}
+            />
             <section className='detail_sec1'>
                 <div className='detail_category'>{commuDetail.category}</div>
                 <div className="detail_title">{commuDetail.title}</div>
@@ -219,13 +309,18 @@ const CommuDetail = ({ commuDetail, deletePost, nickname, postid }) => {
                     <FaEllipsisV className="detail_list" onClick={toggleLists} />
                 </div>
             </section>
-            {showList && (
+            {showToggleList && (showList ? (
                 <ul className='detail_list_box'>
                     <li><span className='li1' onClick={updatePost}>수정하기</span><LuPencil className='li_icon li1_icon' /></li>
                     <li><span className='li2' onClick={deletePost}>삭제하기</span><FaRegTrashAlt className='li_icon li2_icon' /></li>
                     <li><span className='li3' onClick={handleCopyURL}>URL복사</span><BsShare className='li_icon li3_icon' /></li>
                 </ul>
-            )}
+            ) : (
+                <ul className='detail_list_box' style={{ height: "64px" }}>
+                    <li><span className='li3' onClick={handleReportClick}>신고하기</span><AiOutlineAlert className='li_icon li3_icon' /></li>
+                    <li><span className='li3' onClick={handleCopyURL}>URL복사</span><BsShare className='li_icon li3_icon' /></li>
+                </ul>
+            ))}
             <section className='detail_sec2'>
                 <div className="detail_content">
                     {commuDetail.content ? commuDetail.content.replace(/<[^>]+>/g, '') : '내용이 없습니다.'}
@@ -240,7 +335,7 @@ const CommuDetail = ({ commuDetail, deletePost, nickname, postid }) => {
                         ) : (
                             <GoHeart className='heart' onClick={handleClickHeart} />
                         )}
-                        <span>14</span>
+                        <span>{likeCount}</span>
                     </div>
                     <div className="content_item comment_item">
                         <LiaComment className='comment' onClick={toggleComments} />
@@ -273,6 +368,8 @@ const CommuDetail = ({ commuDetail, deletePost, nickname, postid }) => {
                         {commentList.length > 0 ? commentList.map((comment) => (
                             <div className="comment_list" key={comment.id}>
                                 <Comment onClick={() => toggleReComments(comment.id)} comment={comment} fetchCommentList={fetchCommentList} reCommentLength={reCommentLength}
+                                    commentOwnerId={comment.author.id}
+                                    currentUserId={currentUserId}
                                 />
                                 {openReCommentId === comment.id && (
                                     <div className="recomment_area">

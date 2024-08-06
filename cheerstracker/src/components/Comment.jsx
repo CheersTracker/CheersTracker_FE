@@ -9,14 +9,80 @@ import ReportModal from './ReportModal';
 import ReportComModal from './ReportComModal';
 import axios from 'axios';
 
-const Comment = ({ onClick, comment, fetchCommentList, reCommentLength }) => {
+const Comment = ({ onClick, comment, fetchCommentList, reCommentLength, currentUserId, commentOwnerId }) => {
   const commuAPI = window.location.pathname.split('/').filter(segment => segment !== '').pop();
   const commuAPIInt = parseInt(commuAPI, 10);
-  const [clickHeart, setClickHeart] = useState(false);
+  const [clickCommentHeart, setClickCommentHeart] = useState(false);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [showCompleteModal, setShowCompleteModal] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [editedContent, setEditedContent] = useState(comment.content);
+  const [likeCommentCount, setLikeCommentCount] = useState(0);
+
+  const handleCommentLike = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const response = await axios.post(`http://127.0.0.1:8000/community/comments/${comment.id}/like/`, {}, {
+        headers: {
+          'Authorization': `Token ${token}`,
+        },
+      });
+      if (response.status === 200) {
+        setClickCommentHeart(true);
+        setLikeCommentCount(prevCount => prevCount + 1);
+      }
+    } catch (error) {
+      console.error('좋아요 처리 중 오류 발생:', JSON.stringify(error.response.data));
+    }
+  };
+
+  const handleCommentUnlike = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const response = await axios.post(`http://127.0.0.1:8000/community/comments/${comment.id}/like/`, {}, {
+        headers: {
+          'Authorization': `Token ${token}`,
+        },
+      });
+      if (response.status === 200) {
+        setClickCommentHeart(false);
+        setLikeCommentCount(prevCount => prevCount - 1);
+      }
+    } catch (error) {
+      console.error('좋아요 처리 중 오류 발생:', JSON.stringify(error.response.data));
+    }
+  };
+
+  const handleCountCommentHeart = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const response = await axios.get(`http://127.0.0.1:8000/community/comments/${comment.id}/like/`, {
+        headers: {
+          'Authorization': `Token ${token}`,
+        },
+      });
+      if (response.status === 200) {
+        console.log("likecount", response.data)
+        const { is_liked, likes_count } = response.data;
+        setClickCommentHeart(is_liked);
+        setLikeCommentCount(likes_count);
+      }
+    } catch (error) {
+      console.error('좋아요 처리 중 오류 발생:', error);
+    }
+  };
+
+  useEffect(() => {
+    handleCountCommentHeart();
+  }, [])
+  
+  const handleClickCommentHeart = () => {
+    if (clickCommentHeart) {
+      handleCommentUnlike();
+    } else {
+      handleCommentLike();
+    }
+  };
 
   useEffect(() => {
     if (isEditing) {
@@ -36,10 +102,6 @@ const Comment = ({ onClick, comment, fetchCommentList, reCommentLength }) => {
   const handleConfirm = () => {
     setShowConfirmModal(false);
     setShowCompleteModal(true);
-  };
-
-  const handleClickHeart = () => {
-    setClickHeart(!clickHeart);
   };
 
   const handleEditClick = () => {
@@ -109,7 +171,7 @@ const Comment = ({ onClick, comment, fetchCommentList, reCommentLength }) => {
           <div className="box_time">3분전</div>
         </div>
         <p>
-          {isEditing ? (
+          {currentUserId === commentOwnerId ? (isEditing ? (
             <>
               <span className='p1' onClick={handleSaveClick}>저장</span>
               <span className='p2' onClick={() => setIsEditing(false)}>취소</span>
@@ -120,6 +182,8 @@ const Comment = ({ onClick, comment, fetchCommentList, reCommentLength }) => {
               <span className='p2' onClick={handleDeleteClick}>삭제</span>
               <span className='p3' onClick={handleReportClick}>신고하기<AiOutlineAlert /></span>
             </>
+          )) : (
+            <span className='p3' onClick={handleReportClick}>신고하기<AiOutlineAlert /></span>
           )}
         </p>
       </section>
@@ -140,16 +204,16 @@ const Comment = ({ onClick, comment, fetchCommentList, reCommentLength }) => {
         )}
         <div className="box_content">
           <div className="content_item heart_item">
-            {clickHeart ? (
-              <GoHeartFill className='fillheart' onClick={handleClickHeart} />
+            {clickCommentHeart ? (
+              <GoHeartFill className='fillheart' onClick={handleClickCommentHeart} />
             ) : (
-              <GoHeart className='heart' onClick={handleClickHeart} />
+              <GoHeart className='heart' onClick={handleClickCommentHeart} />
             )}
-            <span>14</span>
+            <span>{likeCommentCount}</span>
           </div>
           <div className="content_item comment_item">
             <LiaComment className='comment' onClick={onClick} />
-            <span>{ reCommentLength }</span>
+            <span>{reCommentLength}</span>
           </div>
         </div>
       </section>

@@ -130,7 +130,7 @@ const PostPage = () => {
             setContent('');
             setImages([]);
         } catch (error) {
-            console.error('글 업로드 실패:', error);
+            console.error('글 업로드 실패:', JSON.stringify(error.response.data));
             alert('글 업로드에 실패했습니다.');
             setTitle('');
             setSubject('');
