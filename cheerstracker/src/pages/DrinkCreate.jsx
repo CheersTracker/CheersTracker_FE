@@ -186,7 +186,7 @@ const DrinkCreate = () => {
   
       console.log('음주 기록 저장 성공:', response.data);
       alert('음주 기록이 성공적으로 저장되었습니다!');
-      navigate('/drinking/detail');
+      navigate(`/drinking/detail/${response.data.date}`);
   
     } catch (error) {
       console.error('음주 기록 페이지 에러:', error);
